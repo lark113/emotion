@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>情绪盒子 · 与你同在</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Quicksand', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
+      min-height: 100vh;
+      transition: background 0.8s ease;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      transition: all 0.5s ease;
+    }
+
+    /* ========== 主页 ========== */
+    #homePage {
+      background: #f5f0eb;
+    }
+
+    .home-box {
+      max-width: 440px;
+      width: 100%;
+      background: #fffcf7;
+      box-shadow: 0 25px 45px rgba(130, 100, 70, 0.1), 0 8px 20px rgba(100, 70, 40, 0.06);
+      border-radius: 2.5rem;
+      padding: 2.5rem 1.8rem 2rem;
+      border: 1px solid rgba(220, 200, 175, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .home-box h1 {
+      font-size: 2.2rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #8b7355;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      justify-content: center;
+    }
+    .home-box h1 span {
+      font-size: 2rem;
+    }
+
+    .home-sub {
+      color: #b8a088;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #e5d9c9;
+      padding-bottom: 0.9rem;
+      width: 75%;
+      letter-spacing: 0.5px;
+    }
+
+    .home-box label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: #a08b74;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .home-box input {
+      width: 100%;
+      background: #fefcf8;
+      border: 1.5px solid #e0d3c0;
+      border-radius: 3rem;
+      padding: 0.9rem 1.5rem;
+      font-size: 1.05rem;
+      font-family: inherit;
+      color: #5a4532;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 2px 5px rgba(160, 130, 100, 0.04);
+      text-align: center;
+      letter-spacing: 0.3px;
+      margin-bottom: 0.8rem;
+    }
+
+    .home-box input:focus {
+      border-color: #bfa88b;
+      box-shadow: 0 0 0 4px rgba(180, 140, 100, 0.12);
+      background: #fffefa;
+    }
+
+    .home-box input::placeholder {
+      color: #c8b8a5;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 0.7rem;
+      width: 100%;
+    }
+
+    .home-box button {
+      background: #efe3d4;
+      border: none;
+      padding: 0.85rem 1.4rem;
+      border-radius: 3rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.6px;
+      color: #5a4330;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      flex: 1;
+      box-shadow: 0 5px 12px rgba(140, 110, 70, 0.1);
+      border: 1px solid #e2cfb5;
+      font-family: inherit;
+    }
+
+    .home-box button:hover {
+      box-shadow: 0 8px 16px rgba(140, 90, 50, 0.18);
+      transform: translateY(-2px);
+    }
+    .home-box button:active {
+      transform: scale(0.96);
+    }
+
+    .btn-primary {
+      background: #d4bc9e !important;
+      color: #2f2317 !important;
+      border-color: #c2a07b !important;
+      font-weight: 600 !important;
+    }
+
+    .home-hint {
+      margin-top: 1.8rem;
+      font-size: 0.78rem;
+      color: #af947b;
+      letter-spacing: 0.4px;
+    }
+    .home-hint span {
+      margin: 0 0.3rem;
+    }
+
+    /* ========== 输入为空时的抖动动画 ========== */
+    .input-shake {
+      animation: shake 0.5s ease;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(4px); }
+    }
+
+    /* ========== 小狗提示弹窗 ========== */
+    .puppy-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 252, 247, 0.95);
+      border: 1.5px solid #e0d3c0;
+      border-radius: 2rem;
+      padding: 2rem 2rem 1.8rem;
+      text-align: center;
+      z-index: 200;
+      box-shadow: 0 20px 50px rgba(100, 70, 40, 0.2);
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      max-width: 320px;
+      width: 90%;
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    .puppy-toast .puppy-icon {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 0.8rem;
+      animation: puppyBounce 0.6s ease;
+    }
+    @keyframes puppyBounce {
+      0% { transform: translateY(10px); opacity: 0; }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .puppy-toast .puppy-msg {
+      font-size: 1rem;
+      color: #6b5540;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+    .puppy-toast .puppy-btn {
+      background: #d4bc9e;
+      border: none;
+      padding: 0.6rem 2rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #2f2317;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
+    }
+    .puppy-toast .puppy-btn:hover {
+      background: #ddc7aa;
+      transform: scale(1.03);
+    }
+
+    /* 遮罩 */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.15);
+      z-index: 199;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* ========== 卡片页 ========== */
+    #cardPage {
+      display: none;
+      background: #f5f0eb;
+      transition: background 0.8s ease;
+    }
+
+    .card-container {
+      max-width: 420px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .card-emotion-label {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      padding: 0.4rem 1.6rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      transition: all 0.5s ease;
+      text-transform: uppercase;
+    }
+
+    .card-main {
+      width: 100%;
+      background: #fffcf7;
+      border-radius: 2.5rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(100, 70, 40, 0.1);
+      border: 1px solid rgba(220, 200, 175, 0.5);
+      transition: all 0.5s ease;
+      animation: cardIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes cardIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.94);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .card-main::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200, 170, 140, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: iconBreathe 3s ease-in-out infinite;
+      display: block;
+    }
+
+    @keyframes iconBreathe {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .card-message {
+      font-size: 1.4rem;
+      font-weight: 350;
+      line-height: 1.8;
+      font-style: italic;
+      transition: color 0.5s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-message .quote-left,
+    .card-message .quote-right {
+      font-size: 2.2rem;
+      transition: color 0.5s ease;
+    }
+    .card-message .quote-left {
+      vertical-align: middle;
+      margin-right: 0.1rem;
+    }
+    .card-message .quote-right {
+      vertical-align: bottom;
+      margin-left: 0.1rem;
+    }
+
+    .card-divider {
+      width: 50px;
+      height: 2px;
+      border-radius: 1px;
+      margin: 1.5rem auto 0;
+      transition: background 0.5s ease;
+    }
+
+    .card-remaining {
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+      margin-top: 0.3rem;
+      opacity: 0.7;
+      transition: color 0.5s ease;
+    }
+
+    .btn-back {
+      background: transparent;
+      border: 1.5px solid rgba(180, 150, 120, 0.4);
+      padding: 0.8rem 2.2rem;
+      border-radius: 3rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .btn-back:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(120, 90, 50, 0.1);
+    }
+    .btn-back:active {
+      transform: scale(0.96);
+    }
+
+    /* 浮动粒子 */
+    .particles-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      animation: floatUp 2.2s ease-out forwards;
+    }
+    @keyframes floatUp {
+      0% { opacity: 0.7; transform: translateY(0) scale(0.4); }
+      40% { opacity: 0.5; transform: translateY(-50px) scale(1.1); }
+      100% { opacity: 0; transform: translateY(-140px) scale(0.2); }
+    }
+
+    /* 全部看过的顶部提示 */
+    .reset-toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(80, 60, 40, 0.9);
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 2rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+      z-index: 150;
+      animation: toastIn 0.4s ease, toastOut 0.4s ease 2s forwards;
+      pointer-events: none;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    @keyframes toastIn {
+      0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    @keyframes toastOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    }
+
+    @media (max-width: 400px) {
+      .home-box, .card-main {
+        padding: 2rem 1.2rem;
+      }
+      .card-message {
+        font-size: 1.2rem;
+      }
+      .card-icon {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="particles-layer" id="particlesLayer"></div>
+
+  <!-- ==================== 主页 ==================== -->
+  <div class="page" id="homePage">
+    <div class="home-box">
+      <h1>
+        <span>🐕</span> 情绪盒子 <span>🦴</span>
+      </h1>
+      <div class="home-sub">小狗在这里，接住你的每一种感受</div>
+      
+      <label>此刻的感觉</label>
+      <input type="text" id="emotionInput" placeholder="平静、烦躁、开心、空空的..." autofocus autocomplete="off">
+      
+      <div class="button-row">
+        <button class="btn-primary" id="enterCardBtn">🤲 接住我</button>
+        <button id="randomBtn">🌾 随机感觉</button>
+      </div>
+      
+      <div class="home-hint">
+        <span>🤍</span> 每一句温柔，都只为你出现一次 <span>🤍</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 卡片页 ==================== -->
+  <div class="page" id="cardPage">
+    <div class="card-container">
+      <div class="card-emotion-label" id="cardEmotionLabel">此刻</div>
+      
+      <div class="card-main" id="cardMain">
+        <span class="card-icon" id="cardIcon">🐕</span>
+        <div class="card-message" id="cardMessage">
+          <span class="quote-left">&ldquo;</span>
+          <span class="message-text">小狗在这里，倾听你的感受...</span>
+          <span class="quote-right">&rdquo;</span>
+        </div>
+        <div class="card-divider" id="cardDivider"></div>
+      </div>
+
+      <div class="card-remaining" id="cardRemaining"></div>
+      
+      <button class="btn-back" id="backBtn">
+        <span>←</span> 重新感受
+      </button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ========== 话语库（每句话有唯一ID） ==========
+      const comfortLibrary = {
+        "平静": [
+          { id: "calm_01", text: "平静是一种力量，你此刻正稳稳地拥有它。" },
+          { id: "calm_02", text: "这样的平静，是你为自己争取来的。好好享受它。" },
+          { id: "calm_03", text: "不需要波澜壮阔，平淡的日子也有温柔的光。" },
+          { id: "calm_04", text: "你的内心此刻像一面安静的湖，这很美。" },
+          { id: "calm_05", text: "平静不是无聊，是心灵在休养生息。" }
+        ],
+        "安稳": [
+          { id: "steady_01", text: "安稳的感觉真好，你值得这样的踏实。" },
+          { id: "steady_02", text: "此刻的安稳，是你一路走来的见证。" }
+        ],
+        "淡定": [
+          { id: "calm2_01", text: "淡定的你，有着不易察觉的坚韧。" },
+          { id: "calm2_02", text: "就这样不急不缓，刚刚好。" }
+        ],
+        "烦躁": [
+          { id: "irrit_01", text: "烦躁来了，没关系，它只是路过，不会住下。" },
+          { id: "irrit_02", text: "你现在感觉到的烦躁，是身体在说需要一点空间。" },
+          { id: "irrit_03", text: "不需要赶走烦躁，就让它待一会儿，它会自己走的。" },
+          { id: "irrit_04", text: "烦躁的时候，试试把手放在胸口，深呼吸三次。" },
+          { id: "irrit_05", text: "这种烦躁感不会定义你，它只是此刻的天气，而你是天空。" },
+          { id: "irrit_06", text: "你已经做得很好了，烦躁只是暂时的访客。" }
+        ],
+        "烦": [
+          { id: "annoy_01", text: "烦的时候，先暂停一下，不需要立刻解决什么。" },
+          { id: "annoy_02", text: "允许自己烦，这很正常，不意味着什么。" }
+        ],
+        "焦躁": [
+          { id: "agitat_01", text: "焦躁像一阵风，吹过之后，你还是你。" },
+          { id: "agitat_02", text: "不需要对抗焦躁，轻轻看着它，它会慢慢散开。" }
+        ],
+        "不耐烦": [
+          { id: "impat_01", text: "不耐烦是在提醒你，该给自己一点温柔了。" },
+          { id: "impat_02", text: "没关系，慢慢来，世界不会因此崩塌。" }
+        ],
+        "开心": [
+          { id: "happy_01", text: "看到你开心，小狗也摇起尾巴。这份快乐值得被庆祝。" },
+          { id: "happy_02", text: "开心的时候，就尽情享受吧，你值得每一分快乐。" },
+          { id: "happy_03", text: "这样的笑容是你应得的，好好拥抱这份开心。" },
+          { id: "happy_04", text: "快乐不需要理由，也不需要担心它会消失，此刻它是真实的。" },
+          { id: "happy_05", text: "你的开心，是黑暗过后最美的光。" }
+        ],
+        "快乐": [
+          { id: "joy_01", text: "快乐是一种能力，你正在使用它。" },
+          { id: "joy_02", text: "这份快乐是你自己创造的，好好珍惜。" }
+        ],
+        "高兴": [
+          { id: "glad_01", text: "高兴的时候就笑吧，不用担心下一秒。" },
+          { id: "glad_02", text: "你高兴的样子，一定很温暖。" }
+        ],
+        "愉悦": [
+          { id: "pleas_01", text: "愉悦是心灵的阳光，尽情沐浴其中吧。" },
+          { id: "pleas_02", text: "这份愉悦是你给自己的礼物。" }
+        ],
+        "空虚": [
+          { id: "empty_01", text: "空虚感是心灵在寻找新的意义，这需要时间。" },
+          { id: "empty_02", text: "感觉空空的时候，不代表你什么都没有。" },
+          { id: "empty_03", text: "空虚只是暂时的留白，新的东西会慢慢填进来。" },
+          { id: "empty_04", text: "即使感觉空空的，你依然完整而珍贵。" }
+        ],
+        "麻木": [
+          { id: "numb_01", text: "麻木是心灵在自我保护，它不会永远持续。" },
+          { id: "numb_02", text: "感觉不到也没关系，你的感受力会慢慢回来的。" }
+        ],
+        "空洞": [
+          { id: "hollow_01", text: "空洞的时候，就当是心灵在休息。" },
+          { id: "hollow_02", text: "不需要强迫自己感受什么，空白也是被允许的。" }
+        ],
+        "低落": [
+          { id: "low_01", text: "情绪有高有低是正常的，低谷只是暂时的。" },
+          { id: "low_02", text: "低落不等于退步，这只是波动的一部分。" },
+          { id: "low_03", text: "你曾经走过更暗的路，这次的低落也会过去。" },
+          { id: "low_04", text: "允许自己低落，不需要立刻振作。" }
+        ],
+        "消沉": [
+          { id: "depress_01", text: "消沉的时候，记得你不需要独自承担。" },
+          { id: "depress_02", text: "这种消沉感是暂时的，它不代表你的全部。" }
+        ],
+        "难过": [
+          { id: "sad_01", text: "难过的时候就难过吧，这是真实的情感。" },
+          { id: "sad_02", text: "你的难过值得被认真对待，不需要隐藏。" }
+        ],
+        "波动": [
+          { id: "fluct_01", text: "情绪的波动就像天气，你不需要控制它，只需要观察它。" },
+          { id: "fluct_02", text: "波动是情感障碍的一部分，不代表你做错了什么。" },
+          { id: "fluct_03", text: "每一阵波动都会过去，你在波浪中依然可以呼吸。" },
+          { id: "fluct_04", text: "起伏不定的时候，记得锚定在呼吸上。" }
+        ],
+        "不稳定": [
+          { id: "unstab_01", text: "不稳定不是你的错，你已经在努力了。" },
+          { id: "unstab_02", text: "在不稳定中，你依然有着强大的韧性。" }
+        ],
+        "起伏": [
+          { id: "upsdown_01", text: "情绪的起伏是生命的韵律，你在其中已经走了很远。" },
+          { id: "upsdown_02", text: "起起伏伏中，你学会了与自己相处。" }
+        ],
+        "敏感": [
+          { id: "sensit_01", text: "敏感是你的天赋，不是缺陷。它让你更深刻地感受世界。" },
+          { id: "sensit_02", text: "敏感的时候，给自己多一点保护，这很合理。" },
+          { id: "sensit_03", text: "你的敏感让世界对你来说更丰富，也更有挑战，你已经做得很好了。" }
+        ],
+        "脆弱": [
+          { id: "fragil_01", text: "脆弱不是软弱，是勇气在休息。" },
+          { id: "fragil_02", text: "允许自己脆弱，这也是真实的你。" }
+        ],
+        "疲惫": [
+          { id: "tired_01", text: "疲惫是身体在请求关怀，你已经辛苦了。" },
+          { id: "tired_02", text: "累的时候不需要加油，只需要休息。" },
+          { id: "tired_03", text: "今天就到此为止吧，你已经足够努力了。" }
+        ],
+        "无力": [
+          { id: "powerl_01", text: "无力感不意味着你无能，只是此刻能量低了些。" },
+          { id: "powerl_02", text: "无力的时候，就当一天软软的云。" }
+        ],
+        "孤独": [
+          { id: "lonely_01", text: "孤独感来了又走，而你始终和自己在一起。" },
+          { id: "lonely_02", text: "即使感觉孤独，你也不是真正孤身一人。" }
+        ],
+        "焦虑": [
+          { id: "anx_01", text: "焦虑是大脑在试图保护你，谢谢它，然后轻轻告诉它：我现在安全。" },
+          { id: "anx_02", text: "焦虑不会改变明天，只会消耗今天。慢慢来。" }
+        ],
+        "担心": [
+          { id: "worry_01", text: "担心的事情大多不会发生，而你有能力应对那些可能发生的。" },
+          { id: "worry_02", text: "把担心写下来，会变得轻一些。" }
+        ],
+        "迷茫": [
+          { id: "lost_01", text: "迷茫是成长的一部分，不需要立刻看清方向。" },
+          { id: "lost_02", text: "在迷茫中停留一会儿也没关系，答案会慢慢浮现。" }
+        ],
+        "default": [
+          { id: "def_01", text: "无论此刻是什么感觉，它都是被允许的。" },
+          { id: "def_02", text: "情感的波动不代表你退步了，你一直在向前。" },
+          { id: "def_03", text: "你是走过黑暗的人，这一路已经证明了你的力量。" },
+          { id: "def_04", text: "每一种情绪状态都是暂时的，而你的价值是恒定的。" },
+          { id: "def_05", text: "不需要评判自己的感受，它们只是路过。" },
+          { id: "def_06", text: "你不需要时时刻刻都好，真实比完美更重要。" },
+          { id: "def_07", text: "在这个盒子里，你可以放下所有伪装。" },
+          { id: "def_08", text: "情绪的波浪会来，也会退去。你是大海，不只是波浪。" },
+          { id: "def_09", text: "今天无论是什么状态，你都已经足够好了。" },
+          { id: "def_10", text: "小狗在这里，接住你的每一种感受。" }
+        ]
+      };
+
+      // ========== 本地存储管理 ==========
+      const STORAGE_KEY = 'emotion_box_viewed_ids_v2';
+
+      function getViewedIds() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) return new Set(JSON.parse(stored));
+        } catch (e) {}
+        return new Set();
+      }
+
+      function saveViewedIds(viewedSet) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify([...viewedSet]));
+        } catch (e) {
+          try {
+            localStorage.removeItem(STORAGE_KEY);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify([...viewedSet]));
+          } catch (e2) {}
+        }
+      }
+
+      function markAsViewed(id) {
+        const viewed = getViewedIds();
+        viewed.add(id);
+        saveViewedIds(viewed);
+      }
+
+      function clearCategoryViewed(ids) {
+        const viewed = getViewedIds();
+        ids.forEach(id => viewed.delete(id));
+        saveViewedIds(viewed);
+      }
+
+      function pickUnviewedSentence(sentences) {
+        const viewed = getViewedIds();
+        const unviewed = sentences.filter(s => !viewed.has(s.id));
+        
+        if (unviewed.length > 0) {
+          const picked = unviewed[Math.floor(Math.random() * unviewed.length)];
+          return { sentence: picked, remaining: unviewed.length - 1, isReset: false };
+        } else {
+          const allIds = sentences.map(s => s.id);
+          clearCategoryViewed(allIds);
+          const picked = sentences[Math.floor(Math.random() * sentences.length)];
+          return { sentence: picked, remaining: sentences.length - 1, isReset: true };
+        }
+      }
+
+      // ========== 配色方案 ==========
+      const colorSchemes = {
+        calm: {
+          pageBg: '#edf4f1', labelBg: '#c8ddd4', labelColor: '#3d5a50',
+          cardBg: '#f6fbf9', cardBorder: '#c8ddd4', textColor: '#3d5a50',
+          quoteColor: '#8aada0', dividerBg: '#c8ddd4', icon: '🍃',
+          remainingColor: '#7a9a8a',
+          particles: ['#c8ddd4', '#a3c9bc', '#d4e8e0', '#b8d5c8'],
+          backBorder: 'rgba(140,170,155,0.5)', backColor: '#5a7a6a',
+          backBg: 'rgba(237,244,241,0.6)'
+        },
+        irritable: {
+          pageBg: '#faf3ec', labelBg: '#e8ccb5', labelColor: '#5c3d2a',
+          cardBg: '#fef9f5', cardBorder: '#e8ccb5', textColor: '#5c3d2a',
+          quoteColor: '#c49474', dividerBg: '#e8ccb5', icon: '💨',
+          remainingColor: '#a07858',
+          particles: ['#e8ccb5', '#f0d0b0', '#dbb898', '#edc9a8'],
+          backBorder: 'rgba(180,140,110,0.5)', backColor: '#7a5a3d',
+          backBg: 'rgba(250,243,236,0.6)'
+        },
+        happy: {
+          pageBg: '#fdf8ec', labelBg: '#f0d98c', labelColor: '#5c4a1f',
+          cardBg: '#fffef7', cardBorder: '#f0d98c', textColor: '#5c4a1f',
+          quoteColor: '#d4b850', dividerBg: '#f0d98c', icon: '✨',
+          remainingColor: '#a09040',
+          particles: ['#f0d98c', '#fae3a0', '#ffeaa7', '#f5db7e'],
+          backBorder: 'rgba(200,170,80,0.5)', backColor: '#7a6a2f',
+          backBg: 'rgba(253,248,236,0.6)'
+        },
+        low: {
+          pageBg: '#f2f0f5', labelBg: '#d0c8db', labelColor: '#4a3d5c',
+          cardBg: '#f9f8fb', cardBorder: '#d0c8db', textColor: '#4a3d5c',
+          quoteColor: '#9b8eaa', dividerBg: '#d0c8db', icon: '🌙',
+          remainingColor: '#7a6e8a',
+          particles: ['#d0c8db', '#e0d8ea', '#c5bcd0', '#dbd2e5'],
+          backBorder: 'rgba(150,135,170,0.5)', backColor: '#5a4d6e',
+          backBg: 'rgba(242,240,245,0.6)'
+        },
+        anxious: {
+          pageBg: '#f0f0f7', labelBg: '#c4bfdb', labelColor: '#3d3858',
+          cardBg: '#f8f7fc', cardBorder: '#c4bfdb', textColor: '#3d3858',
+          quoteColor: '#8b84a8', dividerBg: '#c4bfdb', icon: '🌊',
+          remainingColor: '#6b6590',
+          particles: ['#c4bfdb', '#d5d0e8', '#bdb8d4', '#cdc8e0'],
+          backBorder: 'rgba(140,130,170,0.5)', backColor: '#4d4768',
+          backBg: 'rgba(240,240,247,0.6)'
+        },
+        default: {
+          pageBg: '#f5f0eb', labelBg: '#e5cdb0', labelColor: '#4a3522',
+          cardBg: '#fffcf7', cardBorder: '#e0d3c0', textColor: '#4a3725',
+          quoteColor: '#c4a68a', dividerBg: '#e5cdb0', icon: '🐕',
+          remainingColor: '#9a8570',
+          particles: ['#e5cdb0', '#f0dcc5', '#dbc3a5', '#e8d4bb'],
+          backBorder: 'rgba(180,150,120,0.5)', backColor: '#6b5a45',
+          backBg: 'rgba(245,240,235,0.6)'
+        }
+      };
+
+      // ========== DOM ==========
+      const homePage = document.getElementById('homePage');
+      const cardPage = document.getElementById('cardPage');
+      const emotionInput = document.getElementById('emotionInput');
+      const enterCardBtn = document.getElementById('enterCardBtn');
+      const randomBtn = document.getElementById('randomBtn');
+      const backBtn = document.getElementById('backBtn');
+      const cardEmotionLabel = document.getElementById('cardEmotionLabel');
+      const cardMain = document.getElementById('cardMain');
+      const cardIcon = document.getElementById('cardIcon');
+      const cardMessage = document.getElementById('cardMessage');
+      const cardDivider = document.getElementById('cardDivider');
+      const cardRemaining = document.getElementById('cardRemaining');
+      const particlesLayer = document.getElementById('particlesLayer');
+
+      const randomEmotionList = [
+        "平静", "烦躁", "开心", "空虚", "低落", "波动", 
+        "敏感", "疲惫", "焦虑", "迷茫", "难过", "麻木",
+        "不安", "脆弱", "无力", "孤独", "消沉", "焦躁"
+      ];
+
+      // ========== 匹配情绪 ==========
+      function findSentences(emotionText) {
+        if (!emotionText || !emotionText.trim()) return null;
+        const trimmed = emotionText.trim();
+        const lowerInput = trimmed.toLowerCase();
+        for (let key of Object.keys(comfortLibrary)) {
+          if (key.toLowerCase() === lowerInput) {
+            return { sentences: comfortLibrary[key], matchedKey: key };
+          }
+        }
+        for (let key of Object.keys(comfortLibrary)) {
+          if (key === 'default') continue;
+          if (lowerInput.includes(key.toLowerCase()) || key.toLowerCase().includes(lowerInput)) {
+            return { sentences: comfortLibrary[key], matchedKey: key };
+          }
+        }
+        return { sentences: comfortLibrary["default"], matchedKey: null };
+      }
+
+      function getColorCategory(key) {
+        if (!key) return 'default';
+        const calm = ['平静', '安稳', '淡定'];
+        const irritable = ['烦躁', '烦', '焦躁', '不耐烦', '生气', '愤怒'];
+        const happy = ['开心', '快乐', '高兴', '愉悦'];
+        const low = ['低落', '消沉', '难过', '空虚', '麻木', '空洞', '疲惫', '无力', '孤独'];
+        const anxious = ['焦虑', '担心', '不安', '波动', '不稳定', '起伏', '敏感', '脆弱', '迷茫'];
+        if (calm.includes(key)) return 'calm';
+        if (irritable.includes(key)) return 'irritable';
+        if (happy.includes(key)) return 'happy';
+        if (low.includes(key)) return 'low';
+        if (anxious.includes(key)) return 'anxious';
+        return 'default';
+      }
+
+      // ========== 小狗提示弹窗 ==========
+      function showPuppyToast() {
+        // 移除旧弹窗
+        const oldOverlay = document.querySelector('.overlay');
+        if (oldOverlay) oldOverlay.remove();
+        const oldToast = document.querySelector('.puppy-toast');
+        if (oldToast) oldToast.remove();
+
+        // 遮罩
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay';
+
+        // 弹窗
+        const toast = document.createElement('div');
+        toast.className = 'puppy-toast';
+        toast.innerHTML = `
+          <span class="puppy-icon">🐕</span>
+          <div class="puppy-msg">抱歉，小狗没感知到你的情绪😭</div>
+          <button class="puppy-btn">好的，我去输入</button>
+        `;
+
+        // 点击关闭
+        const closeAll = () => {
+          toast.remove();
+          overlay.remove();
+          emotionInput.focus();
+        };
+        toast.querySelector('.puppy-btn').addEventListener('click', closeAll);
+        overlay.addEventListener('click', closeAll);
+
+        document.body.appendChild(overlay);
+        document.body.appendChild(toast);
+
+        // 输入框抖动
+        emotionInput.classList.add('input-shake');
+        setTimeout(() => emotionInput.classList.remove('input-shake'), 500);
+      }
+
+      // ========== 顶部提示 ==========
+      function showTopToast(message) {
+        const existing = document.querySelector('.reset-toast');
+        if (existing) existing.remove();
+        const t = document.createElement('div');
+        t.className = 'reset-toast';
+        t.textContent = message;
+        document.body.appendChild(t);
+        setTimeout(() => { if (t.parentNode) t.remove(); }, 2500);
+      }
+
+      // ========== 粒子 ==========
+      function spawnParticles(colors) {
+        for (let i = 0; i < 12; i++) {
+          setTimeout(() => {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 7 + 3;
+            p.style.cssText = `
+              width:${size}px; height:${size}px;
+              background:${colors[Math.floor(Math.random() * colors.length)]};
+              left:${20 + Math.random() * 60}%;
+              top:${40 + Math.random() * 30}%;
+              animation-duration:${1.8 + Math.random() * 1.5}s;
+            `;
+            particlesLayer.appendChild(p);
+            setTimeout(() => { if (p.parentNode) p.remove(); }, 2500);
+          }, i * 50);
+        }
+      }
+
+      // ========== 应用配色 ==========
+      function applyScheme(schemeKey) {
+        const s = colorSchemes[schemeKey] || colorSchemes['default'];
+        cardPage.style.backgroundColor = s.pageBg;
+        cardEmotionLabel.style.backgroundColor = s.labelBg;
+        cardEmotionLabel.style.color = s.labelColor;
+        cardMain.style.backgroundColor = s.cardBg;
+        cardMain.style.borderColor = s.cardBorder;
+        cardIcon.textContent = s.icon;
+        cardDivider.style.backgroundColor = s.dividerBg;
+        cardRemaining.style.color = s.remainingColor;
+        backBtn.style.borderColor = s.backBorder;
+        backBtn.style.color = s.backColor;
+        backBtn.style.backgroundColor = s.backBg;
+        return s;
+      }
+
+      function updateCardMessage(text, quoteColor) {
+        cardMessage.innerHTML = `
+          <span class="quote-left" style="color:${quoteColor}">&ldquo;</span>
+          <span class="message-text" style="color:${quoteColor}">${text}</span>
+          <span class="quote-right" style="color:${quoteColor}">&rdquo;</span>
+        `;
+        // 文字颜色
+        cardMessage.querySelector('.message-text').style.color = colorSchemes[getColorCategory(cardEmotionLabel.textContent)]?.textColor || '#4a3725';
+        cardMessage.querySelector('.message-text').style.color = '';
+        cardMessage.style.color = '';
+      }
+
+      // ========== 显示卡片页 ==========
+      function showCardPage(emotionText) {
+        const result = findSentences(emotionText);
+        
+        // 输入为空 → 小狗提示
+        if (!result) {
+          showPuppyToast();
+          return;
+        }
+
+        const { sentences, matchedKey } = result;
+        const { sentence, remaining, isReset } = pickUnviewedSentence(sentences);
+        const category = getColorCategory(matchedKey);
+        const scheme = applyScheme(category);
+
+        // 标记为已看
+        markAsViewed(sentence.id);
+
+        // 设置情绪标签
+        const displayEmotion = matchedKey || emotionText.trim().substring(0, 10);
+        cardEmotionLabel.textContent = displayEmotion;
+
+        // 更新卡片文字
+        updateCardMessage(sentence.text, scheme.quoteColor);
+
+        // 剩余数量
+        if (remaining > 0) {
+          cardRemaining.textContent = `这个情绪还有 ${remaining} 句新的话等你发现`;
+        } else {
+          cardRemaining.textContent = '✨ 全部重新开始';
+        }
+
+        // 重置提示
+        if (isReset) {
+          showTopToast('🔄 这个情绪的所有话都看完啦，已为你重新开始');
+        }
+
+        // 卡片动画
+        cardMain.style.animation = 'none';
+        cardMain.offsetHeight;
+        cardMain.style.animation = 'cardIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1)';
+
+        // 切换页面
+        homePage.style.display = 'none';
+        cardPage.style.display = 'flex';
+
+        // 粒子
+        spawnParticles(scheme.particles);
+
+        window.scrollTo(0, 0);
+      }
+
+      // ========== 返回主页 ==========
+      function goHome() {
+        cardPage.style.display = 'none';
+        homePage.style.display = 'flex';
+        emotionInput.value = '';
+        emotionInput.focus();
+        window.scrollTo(0, 0);
+      }
+
+      // ========== 事件 ==========
+      enterCardBtn.addEventListener('click', () => {
+        showCardPage(emotionInput.value);
+      });
+
+      randomBtn.addEventListener('click', () => {
+        const randomEmotion = randomEmotionList[Math.floor(Math.random() * randomEmotionList.length)];
+        emotionInput.value = randomEmotion;
+        showCardPage(randomEmotion);
+      });
+
+      backBtn.addEventListener('click', goHome);
+
+      emotionInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          showCardPage(emotionInput.value);
+        }
+      });
+
+      // 初始状态
+      homePage.style.display = 'flex';
+      cardPage.style.display = 'none';
+      emotionInput.focus();
+
+      console.log('🐕 小狗情绪盒子已就绪');
+      console.log('📦 本地存储键名:', STORAGE_KEY);
+      console.log('👀 已看过:', [...getViewedIds()]);
+    })();
+  </script>
+</body>
+</html>
