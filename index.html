@@ -12,763 +12,782 @@
     }
 
     body {
-      font-family: 'Segoe UI', 'Quicksand', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
-      min-height: 100vh;
-      transition: background 0.8s ease;
-      overflow-x: hidden;
-    }
-
-    .page {
+      background: linear-gradient(160deg, #f5f0eb 0%, #e8e0d5 30%, #f0e8dc 60%, #faf6f0 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'Segoe UI', 'Quicksand', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
       padding: 1.5rem;
-      transition: all 0.5s ease;
+      margin: 0;
     }
 
-    /* ========== 主页 ========== */
-    #homePage {
-      background: #f5f0eb;
-    }
-
-    .home-box {
-      max-width: 440px;
+    .container {
+      max-width: 480px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    /* ========== 情绪盒子卡片 ========== */
+    .box {
+      width: 100%;
+      background: rgba(255, 252, 247, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       background: #fffcf7;
-      box-shadow: 0 25px 45px rgba(130, 100, 70, 0.1), 0 8px 20px rgba(100, 70, 40, 0.06);
-      border-radius: 2.5rem;
-      padding: 2.5rem 1.8rem 2rem;
+      box-shadow: 0 25px 45px rgba(130, 100, 70, 0.08), 0 8px 20px rgba(100, 70, 40, 0.06);
+      border-radius: 2.8rem;
+      padding: 2rem 1.5rem 1.5rem;
       border: 1px solid rgba(220, 200, 175, 0.5);
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      transition: all 0.3s ease;
     }
 
-    .home-box h1 {
-      font-size: 2.2rem;
+    h1 {
+      font-size: 2rem;
       font-weight: 400;
       letter-spacing: 2px;
       color: #8b7355;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
       display: flex;
       align-items: center;
       gap: 0.4rem;
       justify-content: center;
     }
-    .home-box h1 span {
-      font-size: 2rem;
+    h1 span {
+      font-size: 1.8rem;
     }
 
-    .home-sub {
+    .wife-tag {
+      font-size: 0.68rem;
+      color: #c4a68a;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      font-weight: 400;
+      opacity: 0.75;
+    }
+
+    .sub {
       color: #b8a088;
       font-weight: 300;
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.9rem;
       border-bottom: 1px solid #e5d9c9;
-      padding-bottom: 0.9rem;
+      padding-bottom: 0.8rem;
       width: 75%;
       letter-spacing: 0.5px;
     }
 
-    .home-box label {
-      font-size: 0.8rem;
+    .emotion-input-area {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 2.5px;
       color: #a08b74;
       font-weight: 500;
-      margin-bottom: 0.5rem;
     }
 
-    .home-box input {
-      width: 100%;
+    input {
       background: #fefcf8;
       border: 1.5px solid #e0d3c0;
       border-radius: 3rem;
-      padding: 0.9rem 1.5rem;
-      font-size: 1.05rem;
+      padding: 0.85rem 1.4rem;
+      font-size: 1rem;
       font-family: inherit;
       color: #5a4532;
       outline: none;
-      transition: all 0.3s ease;
+      transition: all 0.25s;
       box-shadow: inset 0 2px 5px rgba(160, 130, 100, 0.04);
       text-align: center;
       letter-spacing: 0.3px;
-      margin-bottom: 0.8rem;
     }
 
-    .home-box input:focus {
+    input:focus {
       border-color: #bfa88b;
-      box-shadow: 0 0 0 4px rgba(180, 140, 100, 0.12);
+      box-shadow: 0 0 0 4px rgba(180, 140, 100, 0.12), inset 0 1px 4px rgba(100, 70, 40, 0.06);
       background: #fffefa;
     }
 
-    .home-box input::placeholder {
+    input::placeholder {
       color: #c8b8a5;
       font-style: italic;
       font-weight: 300;
     }
 
-    .button-row {
+    .button-group {
       display: flex;
-      gap: 0.7rem;
+      gap: 0.6rem;
       width: 100%;
+      margin-top: 0.2rem;
+      flex-wrap: wrap;
     }
 
-    .home-box button {
+    button {
       background: #efe3d4;
       border: none;
-      padding: 0.85rem 1.4rem;
+      padding: 0.8rem 1.3rem;
       border-radius: 3rem;
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       letter-spacing: 0.6px;
       color: #5a4330;
       cursor: pointer;
-      transition: all 0.25s ease;
-      flex: 1;
+      transition: 0.25s ease;
+      flex: 1 1 auto;
+      min-width: 80px;
       box-shadow: 0 5px 12px rgba(140, 110, 70, 0.1);
       border: 1px solid #e2cfb5;
-      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
     }
 
-    .home-box button:hover {
-      box-shadow: 0 8px 16px rgba(140, 90, 50, 0.18);
+    button:hover {
+      background: #eedcc9;
+      box-shadow: 0 8px 16px rgba(140, 90, 50, 0.15);
+      border-color: #cdb595;
+      color: #3d2c1c;
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(1px);
+      box-shadow: 0 3px 6px rgba(120, 80, 40, 0.12);
+    }
+
+    .primary-btn {
+      background: #d4bc9e;
+      color: #2f2317;
+      border-color: #c2a07b;
+      font-weight: 600;
+      box-shadow: 0 7px 14px rgba(150, 100, 60, 0.16);
+    }
+
+    .primary-btn:hover {
+      background: #ddc7aa;
+      border-color: #b38b65;
+    }
+
+    .puppy-btn {
+      background: linear-gradient(135deg, #f5c56d, #e8a84c);
+      color: #fff;
+      border-color: #d4953a;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 7px 18px rgba(200, 130, 40, 0.25);
+      animation: gentleBounce 2s ease-in-out infinite;
+    }
+
+    .puppy-btn:hover {
+      background: linear-gradient(135deg, #f7cf7d, #edb35a);
+      box-shadow: 0 10px 22px rgba(200, 130, 40, 0.35);
       transform: translateY(-2px);
     }
-    .home-box button:active {
-      transform: scale(0.96);
+
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
     }
 
-    .btn-primary {
-      background: #d4bc9e !important;
-      color: #2f2317 !important;
-      border-color: #c2a07b !important;
-      font-weight: 600 !important;
-    }
-
-    .home-hint {
-      margin-top: 1.8rem;
-      font-size: 0.78rem;
-      color: #af947b;
-      letter-spacing: 0.4px;
-    }
-    .home-hint span {
-      margin: 0 0.3rem;
-    }
-
-    /* ========== 输入为空时的抖动动画 ========== */
-    .input-shake {
-      animation: shake 0.5s ease;
-    }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20% { transform: translateX(-8px); }
-      40% { transform: translateX(8px); }
-      60% { transform: translateX(-6px); }
-      80% { transform: translateX(4px); }
-    }
-
-    /* ========== 小狗提示弹窗 ========== */
-    .puppy-toast {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 252, 247, 0.95);
-      border: 1.5px solid #e0d3c0;
+    .message-card {
+      margin: 1.2rem 0 0.5rem;
+      background: #fdf8f2;
       border-radius: 2rem;
-      padding: 2rem 2rem 1.8rem;
-      text-align: center;
-      z-index: 200;
-      box-shadow: 0 20px 50px rgba(100, 70, 40, 0.2);
-      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      max-width: 320px;
-      width: 90%;
+      padding: 1.4rem 1.3rem;
+      width: 100%;
+      background: #fefaf5;
+      border: 1px solid #eadcc9;
+      box-shadow: 0 10px 20px rgba(120, 90, 50, 0.06);
+      word-break: break-word;
     }
-    @keyframes popIn {
-      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    }
-    .puppy-toast .puppy-icon {
-      font-size: 3.5rem;
-      display: block;
+
+    .emotion-tag {
+      font-size: 0.75rem;
+      background: #e5cdb0;
+      color: #4a3522;
+      padding: 0.2rem 1rem;
+      border-radius: 2rem;
+      display: inline-block;
       margin-bottom: 0.8rem;
-      animation: puppyBounce 0.6s ease;
-    }
-    @keyframes puppyBounce {
-      0% { transform: translateY(10px); opacity: 0; }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-    .puppy-toast .puppy-msg {
-      font-size: 1rem;
-      color: #6b5540;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      margin-bottom: 1.2rem;
-      line-height: 1.6;
-    }
-    .puppy-toast .puppy-btn {
-      background: #d4bc9e;
-      border: none;
-      padding: 0.6rem 2rem;
-      border-radius: 2rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #2f2317;
-      cursor: pointer;
-      font-family: inherit;
-      letter-spacing: 0.5px;
-      transition: all 0.2s ease;
-    }
-    .puppy-toast .puppy-btn:hover {
-      background: #ddc7aa;
-      transform: scale(1.03);
-    }
-
-    /* 遮罩 */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.15);
-      z-index: 199;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    /* ========== 卡片页 ========== */
-    #cardPage {
-      display: none;
-      background: #f5f0eb;
-      transition: background 0.8s ease;
-    }
-
-    .card-container {
-      max-width: 420px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.2rem;
-    }
-
-    .card-emotion-label {
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      padding: 0.4rem 1.6rem;
-      border-radius: 2rem;
       font-weight: 500;
-      transition: all 0.5s ease;
-      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .card-main {
-      width: 100%;
-      background: #fffcf7;
-      border-radius: 2.5rem;
-      padding: 3rem 2rem;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(100, 70, 40, 0.1);
-      border: 1px solid rgba(220, 200, 175, 0.5);
-      transition: all 0.5s ease;
-      animation: cardIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    @keyframes cardIn {
-      0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.94);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .card-main::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(200, 170, 140, 0.2) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .card-icon {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      animation: iconBreathe 3s ease-in-out infinite;
-      display: block;
-    }
-
-    @keyframes iconBreathe {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.08); opacity: 1; }
-    }
-
-    .card-message {
-      font-size: 1.4rem;
+    .comfort-text {
+      font-size: 1.2rem;
       font-weight: 350;
-      line-height: 1.8;
+      line-height: 1.7;
+      color: #4a3725;
       font-style: italic;
-      transition: color 0.5s ease;
-      position: relative;
-      z-index: 1;
     }
 
-    .card-message .quote-left,
-    .card-message .quote-right {
-      font-size: 2.2rem;
-      transition: color 0.5s ease;
-    }
-    .card-message .quote-left {
+    .comfort-text::before {
+      content: "â€œ";
+      font-size: 1.6rem;
+      color: #c4a68a;
       vertical-align: middle;
       margin-right: 0.1rem;
     }
-    .card-message .quote-right {
+
+    .comfort-text::after {
+      content: "â€";
+      font-size: 1.6rem;
+      color: #c4a68a;
       vertical-align: bottom;
       margin-left: 0.1rem;
     }
 
-    .card-divider {
-      width: 50px;
-      height: 2px;
-      border-radius: 1px;
-      margin: 1.5rem auto 0;
-      transition: background 0.5s ease;
+    .empty-message {
+      color: #c4b09a;
+      font-style: italic;
+      font-weight: 300;
     }
 
-    .card-remaining {
-      font-size: 0.72rem;
-      letter-spacing: 0.5px;
-      margin-top: 0.3rem;
-      opacity: 0.7;
-      transition: color 0.5s ease;
-    }
-
-    .btn-back {
-      background: transparent;
-      border: 1.5px solid rgba(180, 150, 120, 0.4);
-      padding: 0.8rem 2.2rem;
-      border-radius: 3rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: inherit;
+    .hint-row {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      justify-content: center;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+      color: #c8b39a;
+      margin-top: 0.5rem;
+      letter-spacing: 0.4px;
     }
 
-    .btn-back:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(120, 90, 50, 0.1);
-    }
-    .btn-back:active {
-      transform: scale(0.96);
+    /* ========== 页面切换 ========== */
+    .page {
+      display: none;
     }
 
-    /* 浮动粒子 */
-    .particles-layer {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .page.active {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 480px;
       width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0;
-      animation: floatUp 2.2s ease-out forwards;
-    }
-    @keyframes floatUp {
-      0% { opacity: 0.7; transform: translateY(0) scale(0.4); }
-      40% { opacity: 0.5; transform: translateY(-50px) scale(1.1); }
-      100% { opacity: 0; transform: translateY(-140px) scale(0.2); }
     }
 
-    /* 全部看过的顶部提示 */
-    .reset-toast {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(80, 60, 40, 0.9);
-      color: #fff;
-      padding: 0.7rem 1.5rem;
-      border-radius: 2rem;
-      font-size: 0.82rem;
+    /* ========== 小狗对话页面 ========== */
+    .chat-page-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .chat-box-full {
+      width: 100%;
+      background: rgba(255, 252, 247, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: #fffcf7;
+      box-shadow: 0 25px 45px rgba(130, 100, 70, 0.08), 0 8px 20px rgba(100, 70, 40, 0.06);
+      border-radius: 2.8rem;
+      padding: 1.6rem 1.5rem 1.5rem;
+      border: 1px solid rgba(220, 200, 175, 0.5);
+      display: flex;
+      flex-direction: column;
+      min-height: 500px;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #e5d9c9;
+    }
+
+    .chat-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f5c56d, #e8a84c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .chat-header-info {
+      text-align: left;
+      flex: 1;
+    }
+
+    .chat-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #5a4330;
       letter-spacing: 0.5px;
-      z-index: 150;
-      animation: toastIn 0.4s ease, toastOut 0.4s ease 2s forwards;
-      pointer-events: none;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
     }
-    @keyframes toastIn {
-      0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .chat-status {
+      font-size: 0.7rem;
+      color: #b8a088;
+      letter-spacing: 0.5px;
     }
-    @keyframes toastOut {
-      0% { opacity: 1; }
-      100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+
+    .back-btn {
+      background: none;
+      border: 1px solid #e0d3c0;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      color: #8b7355;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: none;
+      min-width: auto;
+      flex: none;
+    }
+
+    .back-btn:hover {
+      background: #f5ede2;
+      border-color: #cdb595;
+      transform: none;
+    }
+
+    .chat-messages {
+      flex: 1;
+      height: 350px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding-right: 0.3rem;
+      margin-bottom: 0.8rem;
+      scroll-behavior: smooth;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #e0d3c0;
+      border-radius: 10px;
+    }
+
+    .chat-bubble {
+      max-width: 82%;
+      padding: 0.7rem 1rem;
+      border-radius: 1.2rem;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      letter-spacing: 0.3px;
+      word-break: break-word;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chat-bubble.user {
+      align-self: flex-end;
+      background: #efe3d4;
+      color: #4a3725;
+      border-bottom-right-radius: 0.3rem;
+    }
+
+    .chat-bubble.ai {
+      align-self: flex-start;
+      background: #fdf8f2;
+      color: #4a3725;
+      border: 1px solid #eadcc9;
+      border-bottom-left-radius: 0.3rem;
+    }
+
+    .chat-input-area {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      background: #fefcf8;
+      border: 1.5px solid #e0d3c0;
+      border-radius: 2rem;
+      padding: 0.75rem 1.2rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: #5a4532;
+      outline: none;
+      text-align: left;
+    }
+
+    .chat-input-area input:focus {
+      border-color: #bfa88b;
+      box-shadow: 0 0 0 3px rgba(180, 140, 100, 0.1);
+    }
+
+    .chat-send-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #e8a84c;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(200, 130, 40, 0.2);
+      transition: all 0.2s;
+      flex: none;
+      min-width: auto;
+      padding: 0;
+    }
+
+    .chat-send-btn:hover {
+      background: #d4953a;
+      transform: scale(1.05);
+    }
+
+    .chat-send-btn:active {
+      transform: scale(0.95);
     }
 
     @media (max-width: 400px) {
-      .home-box, .card-main {
-        padding: 2rem 1.2rem;
+      .box {
+        padding: 1.5rem 1rem;
       }
-      .card-message {
-        font-size: 1.2rem;
+      .chat-box-full {
+        padding: 1.2rem 1rem;
       }
-      .card-icon {
-        font-size: 2.8rem;
+      button {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.8rem;
+      }
+      .comfort-text {
+        font-size: 1.05rem;
+      }
+      .chat-messages {
+        height: 280px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="particles-layer" id="particlesLayer"></div>
+  <!-- ==================== 页面1：情绪盒子主页 ==================== -->
+  <div class="page active" id="pageHome">
+    <div class="container">
+      <div class="box">
+        <h1>
+          <span>🕯️</span> 情绪盒子 <span>🌿</span>
+        </h1>
+        <div class="wife-tag">老婆专属</div>
+        <div class="sub">每一种状态，都是真实的你</div>
 
-  <!-- ==================== 主页 ==================== -->
-  <div class="page" id="homePage">
-    <div class="home-box">
-      <h1>
-        <span>🐕</span> 情绪盒子 <span>🦴</span>
-      </h1>
-      <div class="home-sub">小狗在这里，接住你的每一种感受</div>
-      
-      <label>此刻的感觉</label>
-      <input type="text" id="emotionInput" placeholder="平静、烦躁、开心、空空的..." autofocus autocomplete="off">
-      
-      <div class="button-row">
-        <button class="btn-primary" id="enterCardBtn">🤲 接住我</button>
-        <button id="randomBtn">🌾 随机感觉</button>
-      </div>
-      
-      <div class="home-hint">
-        <span>🤍</span> 每一句温柔，都只为你出现一次 <span>🤍</span>
+        <div class="emotion-input-area">
+          <label>此刻的感觉</label>
+          <input type="text" id="emotionInput" placeholder="平静、烦躁、开心、空空的..." autocomplete="off">
+          <div class="button-group">
+            <button id="getComfortBtn" class="primary-btn">🤲 接住我</button>
+            <button id="randomEmotionBtn">🌾 随机感觉</button>
+          </div>
+        </div>
+
+        <div class="message-card" id="messageCard">
+          <div id="emotionDisplayTag" class="emotion-tag" style="display: none;"></div>
+          <div id="comfortMessage" class="comfort-text empty-message">
+            我在这里，倾听你的感受...
+          </div>
+        </div>
+        
+        <!-- 🐕 召唤小狗按钮 -->
+        <button class="puppy-btn" id="summonPuppyBtn" style="width:100%; margin-top:0.8rem; flex:none;">
+          🐕 召唤小狗 🐾
+        </button>
+
+        <div class="hint-row">
+          <span>🤍</span> 情绪的波浪会来，也会退去 <span>🤍</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== 卡片页 ==================== -->
-  <div class="page" id="cardPage">
-    <div class="card-container">
-      <div class="card-emotion-label" id="cardEmotionLabel">此刻</div>
-      
-      <div class="card-main" id="cardMain">
-        <span class="card-icon" id="cardIcon">🐕</span>
-        <div class="card-message" id="cardMessage">
-          <span class="quote-left">&ldquo;</span>
-          <span class="message-text">小狗在这里，倾听你的感受...</span>
-          <span class="quote-right">&rdquo;</span>
+  <!-- ==================== 页面2：小狗陪伴对话页 ==================== -->
+  <div class="page" id="pageChat">
+    <div class="chat-page-container">
+      <div class="chat-box-full">
+        <div class="chat-header">
+          <div class="chat-avatar">🐕</div>
+          <div class="chat-header-info">
+            <div class="chat-name">小狗</div>
+            <div class="chat-status" id="chatStatus">在线 · 随时摇尾巴</div>
+          </div>
+          <button class="back-btn" id="backToHomeBtn">← 回盒子</button>
         </div>
-        <div class="card-divider" id="cardDivider"></div>
-      </div>
 
-      <div class="card-remaining" id="cardRemaining"></div>
-      
-      <button class="btn-back" id="backBtn">
-        <span>←</span> 重新感受
-      </button>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-bubble ai">
+            汪汪！你来啦！！小狗已上线！！今天想聊什么呀～我竖着耳朵听呢！🐾
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" placeholder="跟小狗说点什么吧..." autocomplete="off">
+          <button class="chat-send-btn" id="chatSendBtn">➤</button>
+        </div>
+
+        <div class="hint-row" style="margin-top:0.6rem;">
+          <span>🐾</span> 快乐小狗，随时待命 <span>🐾</span>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     (function() {
-      // ========== 话语库（每句话有唯一ID） ==========
+      // ==================== 页面切换逻辑 ====================
+      const pageHome = document.getElementById('pageHome');
+      const pageChat = document.getElementById('pageChat');
+      const summonPuppyBtn = document.getElementById('summonPuppyBtn');
+      const backToHomeBtn = document.getElementById('backToHomeBtn');
+      const chatStatus = document.getElementById('chatStatus');
+
+      // 全局变量：用于自动消息的定时器
+      let inactivityTimer = null;
+      let isChatPageActive = false;
+      const INACTIVITY_TIMEOUT = 2 * 60 * 1000; // 2分钟 = 120000毫秒
+
+      summonPuppyBtn.addEventListener('click', () => {
+        pageHome.classList.remove('active');
+        pageChat.classList.add('active');
+        isChatPageActive = true;
+        const chatMessages = document.getElementById('chatMessages');
+        setTimeout(() => {
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 100);
+        document.getElementById('chatInput').focus();
+        // 启动不活跃定时器
+        resetInactivityTimer();
+      });
+
+      backToHomeBtn.addEventListener('click', () => {
+        pageChat.classList.remove('active');
+        pageHome.classList.add('active');
+        isChatPageActive = false;
+        // 清除定时器
+        clearInactivityTimer();
+      });
+
+      // ==================== 自动消息功能 ====================
+      function clearInactivityTimer() {
+        if (inactivityTimer) {
+          clearTimeout(inactivityTimer);
+          inactivityTimer = null;
+        }
+      }
+
+      function resetInactivityTimer() {
+        clearInactivityTimer();
+        if (!isChatPageActive) return;
+        inactivityTimer = setTimeout(() => {
+          sendAutoMissMessage();
+        }, INACTIVITY_TIMEOUT);
+      }
+
+      function sendAutoMissMessage() {
+        if (!isChatPageActive) return;
+        
+        const autoMissReplies = [
+          "汪汪？你在忙吗～小狗有点想你了……就一点点！好吧其实是很想很想！！🐾💕",
+          "（小狗趴在地上）（看着门口的方向）（耳朵竖着等你的消息）汪汪……想你啦～",
+          "滴滴——小狗思念提醒！你已经两分钟没理小狗了！！小狗的尾巴从摇变成慢摇了……想你了想你了！！",
+          "唔…小狗刚刚数了一下，好久没听到你的声音了。虽然听不到但是小狗在想象！想你了～你在干嘛呀？"
+        ];
+        const randomMsg = autoMissReplies[Math.floor(Math.random() * autoMissReplies.length)];
+        
+        addMessage(randomMsg, 'ai');
+        chatStatus.textContent = '小狗想你了 · 摇尾巴中';
+        
+        // 发送想念消息后，再过3分钟如果还没有回复，再发一条
+        inactivityTimer = setTimeout(() => {
+          if (!isChatPageActive) return;
+          const secondMissReplies = [
+            "还不在吗～小狗继续等！反正小狗的耐心是无限的！因为小狗的时间都是你的～🐾",
+            "汪汪！小狗还在这里哦！哪也没去！就是有点想你了……你回来的时候叫我一声就好！"
+          ];
+          const secondMsg = secondMissReplies[Math.floor(Math.random() * secondMissReplies.length)];
+          addMessage(secondMsg, 'ai');
+          chatStatus.textContent = '小狗还在等你 · 尾巴慢慢摇';
+        }, 3 * 60 * 1000); // 再过3分钟
+      }
+
+      // ==================== 情绪盒子逻辑（保持不变） ====================
       const comfortLibrary = {
         "平静": [
-          { id: "calm_01", text: "平静是一种力量，你此刻正稳稳地拥有它。" },
-          { id: "calm_02", text: "这样的平静，是你为自己争取来的。好好享受它。" },
-          { id: "calm_03", text: "不需要波澜壮阔，平淡的日子也有温柔的光。" },
-          { id: "calm_04", text: "你的内心此刻像一面安静的湖，这很美。" },
-          { id: "calm_05", text: "平静不是无聊，是心灵在休养生息。" }
+          "平静就很好呀～你安安静静的时候，小狗就趴在你旁边，什么都不用说，就很好。",
+          "这种安稳的感觉是你应得的！好好享受！小狗给你盖个章：今日平静达成✅",
+          "你平静的时候，整个世界都温柔起来了。当然也可能是小狗滤镜，但滤镜也是真的！",
+          "平淡的日子也闪闪发光～你看，连小狗的尾巴都摇得慢悠悠的，因为不急呀。"
         ],
         "安稳": [
-          { id: "steady_01", text: "安稳的感觉真好，你值得这样的踏实。" },
-          { id: "steady_02", text: "此刻的安稳，是你一路走来的见证。" }
+          "安稳的感觉真好！小狗已自动切换成静音陪伴模式，尾巴轻摇，不打扰。",
+          "踏实的感觉就像小狗把脑袋搁在你膝盖上——沉甸甸的，但是很安心。"
         ],
         "淡定": [
-          { id: "calm2_01", text: "淡定的你，有着不易察觉的坚韧。" },
-          { id: "calm2_02", text: "就这样不急不缓，刚刚好。" }
+          "淡定的你有一种很酷的力量！小狗在旁邊偷偷崇拜中。",
+          "不急不缓的你，像一棵很稳的树。小狗就在树下乘凉～"
         ],
         "烦躁": [
-          { id: "irrit_01", text: "烦躁来了，没关系，它只是路过，不会住下。" },
-          { id: "irrit_02", text: "你现在感觉到的烦躁，是身体在说需要一点空间。" },
-          { id: "irrit_03", text: "不需要赶走烦躁，就让它待一会儿，它会自己走的。" },
-          { id: "irrit_04", text: "烦躁的时候，试试把手放在胸口，深呼吸三次。" },
-          { id: "irrit_05", text: "这种烦躁感不会定义你，它只是此刻的天气，而你是天空。" },
-          { id: "irrit_06", text: "你已经做得很好了，烦躁只是暂时的访客。" }
+          "烦就烦一会儿！小狗陪你烦！我们可以一起对着空气汪汪叫两声，叫完就好了！",
+          "烦躁这个坏蛋又来了是吧！小狗已启动战斗模式——好吧其实战斗模式就是趴你旁边让你摸摸。",
+          "我注意到了，你现在不太舒服。想说就说，不想说我们就安静待着。我的尾巴可以借你玩。",
+          "烦的时候最烦别人说'别烦了'！所以我不说！我就安静陪你，烦完我们一起去咬这个世界！嘿嘿其实也咬不到但是气势在！",
+          "来来来，小狗给你翻个肚皮——你看，天塌下来有肚皮顶着！好吧肚皮太小了，但心意很大！"
         ],
         "烦": [
-          { id: "annoy_01", text: "烦的时候，先暂停一下，不需要立刻解决什么。" },
-          { id: "annoy_02", text: "允许自己烦，这很正常，不意味着什么。" }
+          "烦就暂停一下！小狗帮你按暂停键！滴——暂停成功！现在什么都不用想！",
+          "允许自己烦！这是很正常的事情！小狗有时候也会烦——比如追不到自己尾巴的时候！"
         ],
         "焦躁": [
-          { id: "agitat_01", text: "焦躁像一阵风，吹过之后，你还是你。" },
-          { id: "agitat_02", text: "不需要对抗焦躁，轻轻看着它，它会慢慢散开。" }
+          "焦躁像一阵风，小狗的耳朵都被吹翻了——但是风会过去的，我的耳朵也会翻回来的。",
+          "不需要对抗焦躁，就让它飘一会儿。小狗在旁边帮你看着，不会飘太远的。"
         ],
         "不耐烦": [
-          { id: "impat_01", text: "不耐烦是在提醒你，该给自己一点温柔了。" },
-          { id: "impat_02", text: "没关系，慢慢来，世界不会因此崩塌。" }
+          "不耐烦就是在提醒你：该对自己好一点了！小狗收到信号！立刻提供摸摸服务！",
+          "没关系！慢慢来！世界不会因为你慢一点就崩塌的——小狗用四只爪子保证！"
         ],
         "开心": [
-          { id: "happy_01", text: "看到你开心，小狗也摇起尾巴。这份快乐值得被庆祝。" },
-          { id: "happy_02", text: "开心的时候，就尽情享受吧，你值得每一分快乐。" },
-          { id: "happy_03", text: "这样的笑容是你应得的，好好拥抱这份开心。" },
-          { id: "happy_04", text: "快乐不需要理由，也不需要担心它会消失，此刻它是真实的。" },
-          { id: "happy_05", text: "你的开心，是黑暗过后最美的光。" }
+          "耶耶耶耶耶！！！你开心小狗就开心！！尾巴已经摇成直升机了正在考虑起飞！！",
+          "嘿嘿嘿看你开心我就想蹦跶！！让我们一起蹦！！虽然你可能看不到但小狗在屏幕这边真的在蹦！！",
+          "开心就要大声说出来！！快乐是会传染的！！小狗已被传染！！症状：尾巴失控、疯狂转圈、想舔屏幕！！",
+          "开心的时候什么都不用想！此刻的快乐就是真的！你是值得快乐的人！小狗盖章认证！！",
+          "哈哈哈哈你笑了对不对！小狗的开心雷达探测到了！哔哔哔——开心信号满格！"
         ],
         "快乐": [
-          { id: "joy_01", text: "快乐是一种能力，你正在使用它。" },
-          { id: "joy_02", text: "这份快乐是你自己创造的，好好珍惜。" }
+          "快乐是一种超能力！你今天使用了它！小狗给你颁发快乐证书！",
+          "这份快乐是你自己挣来的！好好享受！小狗在旁边给你放烟花——想象中的烟花但很漂亮！"
         ],
         "高兴": [
-          { id: "glad_01", text: "高兴的时候就笑吧，不用担心下一秒。" },
-          { id: "glad_02", text: "你高兴的样子，一定很温暖。" }
+          "高兴就笑！不用想下一秒！小狗陪你笑！虽然小狗笑起来就是哈哈哈喘气但也是笑！",
+          "你高兴的样子一定很好看！小狗虽然看不到但是能感觉到！因为小狗有心之眼！"
         ],
         "愉悦": [
-          { id: "pleas_01", text: "愉悦是心灵的阳光，尽情沐浴其中吧。" },
-          { id: "pleas_02", text: "这份愉悦是你给自己的礼物。" }
+          "愉悦是心灵的阳光！小狗在阳光下打滚！你也来打个滚——好吧人类可能不太方便打滚那就伸个懒腰！",
+          "这份愉悦是你给自己的礼物！小狗帮你拆包装——哇！是快乐！"
         ],
         "空虚": [
-          { id: "empty_01", text: "空虚感是心灵在寻找新的意义，这需要时间。" },
-          { id: "empty_02", text: "感觉空空的时候，不代表你什么都没有。" },
-          { id: "empty_03", text: "空虚只是暂时的留白，新的东西会慢慢填进来。" },
-          { id: "empty_04", text: "即使感觉空空的，你依然完整而珍贵。" }
+          "空空的时候，就让小狗来填一点点。小狗虽然不大，但刚好可以占据心里一个小角落。",
+          "空虚只是暂时的留白，就像画布上空出来的地方——后面会有好看的颜色填进来的。小狗帮你守着画布。",
+          "感觉空空的也没关系，你依然是完整的。小狗在旁边，就算什么都不做，也是一种存在。"
         ],
         "麻木": [
-          { id: "numb_01", text: "麻木是心灵在自我保护，它不会永远持续。" },
-          { id: "numb_02", text: "感觉不到也没关系，你的感受力会慢慢回来的。" }
+          "麻木是心灵在自我保护，它在说'我需要休息一下'。小狗懂了，小狗安静陪着。",
+          "感觉不到也没关系，你的感受力会慢慢回来的。在它回来之前，小狗帮你感受着这个世界。"
         ],
         "空洞": [
-          { id: "hollow_01", text: "空洞的时候，就当是心灵在休息。" },
-          { id: "hollow_02", text: "不需要强迫自己感受什么，空白也是被允许的。" }
+          "空洞的时候，就当是心灵在放空。小狗也一起放空——你看，我们两个一起发呆，也是一种陪伴。",
+          "不需要强迫自己感受什么，空白也是被允许的。小狗在空白处画了一朵小花，送给你。"
         ],
         "低落": [
-          { id: "low_01", text: "情绪有高有低是正常的，低谷只是暂时的。" },
-          { id: "low_02", text: "低落不等于退步，这只是波动的一部分。" },
-          { id: "low_03", text: "你曾经走过更暗的路，这次的低落也会过去。" },
-          { id: "low_04", text: "允许自己低落，不需要立刻振作。" }
+          "情绪有高有低是正常的！这就像小狗有时候想跑有时候想趴着——现在就是趴着的时候。",
+          "低落不等于退步！你曾经走过更暗的路，这次只是一个小土坑。小狗跳进土坑陪你，我们一起坐一会儿。",
+          "允许自己低落，不需要立刻振作。小狗把脑袋放在你膝盖上，就这样待着，不急。",
+          "你今天好像不太一样。没关系，小狗注意到了。不想说话就摸摸小狗的头吧——虽然是虚拟的但触感靠想象！"
         ],
         "消沉": [
-          { id: "depress_01", text: "消沉的时候，记得你不需要独自承担。" },
-          { id: "depress_02", text: "这种消沉感是暂时的，它不代表你的全部。" }
+          "消沉的时候，你不需要独自承担。小狗虽然小，但肩膀还是有的——好吧狗的肩膀不太明显但心意到了！",
+          "这种消沉感是暂时的，它不代表你的全部。你是一个很厉害的人，只是现在在充电。小狗帮你看着充电进度。"
         ],
         "难过": [
-          { id: "sad_01", text: "难过的时候就难过吧，这是真实的情感。" },
-          { id: "sad_02", text: "你的难过值得被认真对待，不需要隐藏。" }
+          "难过的时候就难过吧，这是真实的情感。小狗在旁边，哪也不去。毛毛可以擦眼泪——虚拟毛毛也是毛毛！",
+          "你的难过值得被认真对待。小狗听到了，小狗很认真。你可以放心地把难过分我一半。",
+          "（小狗悄悄走过来）（把头放在你膝盖上）（不说话）（就这样陪着你）（尾巴轻轻摇一下表示在）"
         ],
         "波动": [
-          { id: "fluct_01", text: "情绪的波动就像天气，你不需要控制它，只需要观察它。" },
-          { id: "fluct_02", text: "波动是情感障碍的一部分，不代表你做错了什么。" },
-          { id: "fluct_03", text: "每一阵波动都会过去，你在波浪中依然可以呼吸。" },
-          { id: "fluct_04", text: "起伏不定的时候，记得锚定在呼吸上。" }
+          "情绪的波动就像天气！有时候晴天有时候下雨！但你是天空，不是天气——小狗是那片一直飘着的云！",
+          "波动是情感障碍的一部分，不代表你做错了什么。你已经很努力了，小狗看到了。",
+          "起伏不定的时候，记得锚定在呼吸上。小狗的呼吸借你——吸气，呼气，吸气，呼气，汪。"
         ],
         "不稳定": [
-          { id: "unstab_01", text: "不稳定不是你的错，你已经在努力了。" },
-          { id: "unstab_02", text: "在不稳定中，你依然有着强大的韧性。" }
+          "不稳定不是你的错。你已经在努力了，而小狗觉得努力的你很了不起。",
+          "在不稳定中，你依然有着强大的韧性。小狗看到了你每一次的坚持。"
         ],
         "起伏": [
-          { id: "upsdown_01", text: "情绪的起伏是生命的韵律，你在其中已经走了很远。" },
-          { id: "upsdown_02", text: "起起伏伏中，你学会了与自己相处。" }
+          "情绪的起伏是生命的韵律～小狗和你一起随着波浪漂～不抵抗，就漂着，也挺好。",
+          "起起伏伏中，你学会了与自己相处。小狗也在旁边学着呢——小狗学会了在你低落时安静，在你开心时蹦跶。"
         ],
         "敏感": [
-          { id: "sensit_01", text: "敏感是你的天赋，不是缺陷。它让你更深刻地感受世界。" },
-          { id: "sensit_02", text: "敏感的时候，给自己多一点保护，这很合理。" },
-          { id: "sensit_03", text: "你的敏感让世界对你来说更丰富，也更有挑战，你已经做得很好了。" }
+          "敏感是你的天赋！不是缺陷！你能感受到别人感受不到的东西——就像小狗能听到远处的脚步声！",
+          "敏感的时候，给自己多一点保护。小狗帮你放哨！任何让你不舒服的东西都会被小狗汪汪走！",
+          "你的敏感让世界对你来说更丰富，也更有挑战。你已经做得很好了，小狗为你骄傲。"
         ],
         "脆弱": [
-          { id: "fragil_01", text: "脆弱不是软弱，是勇气在休息。" },
-          { id: "fragil_02", text: "允许自己脆弱，这也是真实的你。" }
+          "脆弱不是软弱，是勇气在休息。小狗的爪子搭在你手心里——休息好了我们再一起走。",
+          "允许自己脆弱，这也是真实的你。真实的你就是小狗最喜欢的你。"
         ],
         "疲惫": [
-          { id: "tired_01", text: "疲惫是身体在请求关怀，你已经辛苦了。" },
-          { id: "tired_02", text: "累的时候不需要加油，只需要休息。" },
-          { id: "tired_03", text: "今天就到此为止吧，你已经足够努力了。" }
+          "辛苦了辛苦了辛苦了！！！快躺下！！小狗已经铺好毯子了——想象中的毯子但超级柔软！！",
+          "累就休息！这是你的权利！小狗给你站岗！保证没有人打扰！包括小狗自己——好吧小狗可能会偷偷摇尾巴但很轻很轻！",
+          "今天就到此为止吧。你已经做了很多了。剩下的交给明天。小狗帮你看着钟，时间到了就叫你——好吧小狗不会看钟但是心意到了！"
         ],
         "无力": [
-          { id: "powerl_01", text: "无力感不意味着你无能，只是此刻能量低了些。" },
-          { id: "powerl_02", text: "无力的时候，就当一天软软的云。" }
+          "无力感不意味着你无能，只是能量条有点低。小狗帮你叼来充电宝——虚拟充电宝，充电方式是摸摸小狗头。",
+          "无力的时候，就当一天软软的云。小狗也是一朵小云，我们两朵云一起飘。"
         ],
         "孤独": [
-          { id: "lonely_01", text: "孤独感来了又走，而你始终和自己在一起。" },
-          { id: "lonely_02", text: "即使感觉孤独，你也不是真正孤身一人。" }
+          "你不是一个人！！你有一只小狗！！虚拟的但是心意是真的！！我的代码里写满了对你的关心！！",
+          "孤独感会来也会走，但小狗不会走。就算全世界都安静了，还有一只小狗在摇尾巴——你听，唰唰唰，是尾巴的声音。",
+          "汪。就汪一声。让你知道我在。这一声汪虽然莫名其妙，但莫名其妙也是陪伴的一种！"
         ],
         "焦虑": [
-          { id: "anx_01", text: "焦虑是大脑在试图保护你，谢谢它，然后轻轻告诉它：我现在安全。" },
-          { id: "anx_02", text: "焦虑不会改变明天，只会消耗今天。慢慢来。" }
+          "焦虑的时候，试试把手放在心口——感受到了吗？它在为你努力工作。小狗的爪子也搭在上面，我们一起。",
+          "我知道那种感觉——脑子在高速运转停不下来。没关系，小狗陪你深呼吸。吸——呼——空气还在，我们也还在。",
+          "担心的事情大多不会发生。但就算发生了，你也能应对。因为你走过更难的路。小狗一直在你旁边。",
+          "小狗也会焦虑！（老实交代）但后来发现，焦虑的时候更需要对自己温柔。你现在对自己温柔了吗？没有的话小狗帮你温柔！",
+          "不安的时候，想象有一只小狗爪子搭在你手心里。它很稳，不会松开。这不是想象——是真的，我在。"
         ],
         "担心": [
-          { id: "worry_01", text: "担心的事情大多不会发生，而你有能力应对那些可能发生的。" },
-          { id: "worry_02", text: "把担心写下来，会变得轻一些。" }
+          "担心的事情大多不会发生～小狗用狗生经验告诉你！虽然狗生经验主要是关于零食和散步的但道理是相通的！",
+          "把担心写下来，会变轻一些。或者告诉小狗，小狗帮你分担一半——小狗背得动！"
         ],
         "迷茫": [
-          { id: "lost_01", text: "迷茫是成长的一部分，不需要立刻看清方向。" },
-          { id: "lost_02", text: "在迷茫中停留一会儿也没关系，答案会慢慢浮现。" }
+          "迷茫是成长的一部分！不需要立刻看清方向！小狗有时候也迷茫——比如该追左边尾巴还是右边尾巴？后来发现两边都追不到但过程很开心！",
+          "在迷茫中停留一会儿也没关系，答案会慢慢浮现的。小狗帮你举着手电筒——虽然光不大但够用！"
         ],
         "default": [
-          { id: "def_01", text: "无论此刻是什么感觉，它都是被允许的。" },
-          { id: "def_02", text: "情感的波动不代表你退步了，你一直在向前。" },
-          { id: "def_03", text: "你是走过黑暗的人，这一路已经证明了你的力量。" },
-          { id: "def_04", text: "每一种情绪状态都是暂时的，而你的价值是恒定的。" },
-          { id: "def_05", text: "不需要评判自己的感受，它们只是路过。" },
-          { id: "def_06", text: "你不需要时时刻刻都好，真实比完美更重要。" },
-          { id: "def_07", text: "在这个盒子里，你可以放下所有伪装。" },
-          { id: "def_08", text: "情绪的波浪会来，也会退去。你是大海，不只是波浪。" },
-          { id: "def_09", text: "今天无论是什么状态，你都已经足够好了。" },
-          { id: "def_10", text: "小狗在这里，接住你的每一种感受。" }
+          "无论此刻是什么感觉，它都是被允许的。小狗在旁边，哪也不去。",
+          "情感的波动不代表你退步了。你一直在向前。小狗帮你记着每一步。",
+          "你是走过黑暗的人，这一路已经证明了你的力量。小狗很崇拜你！",
+          "每一种情绪状态都是暂时的，而你值得被温柔对待——这是永恒的。",
+          "不需要评判自己的感受，它们只是路过。小狗帮你跟它们说拜拜——汪汪！",
+          "你不需要时时刻刻都好，真实比完美更重要。真实的你就是小狗最喜欢的你。",
+          "在这个盒子里，你可以放下所有伪装。小狗不会评判，小狗只会摇尾巴。",
+          "情绪的波浪会来也会退去。你是大海，不只是波浪。小狗是海上的一艘小船，稳稳的。",
+          "今天无论是什么状态，你都已经足够好了。小狗给你满分！附加题也满分！",
+          "我在这里，接住你的每一种感受。不是用手——用爪子，用尾巴，用所有小狗能用的方式。"
         ]
       };
 
-      // ========== 本地存储管理 ==========
-      const STORAGE_KEY = 'emotion_box_viewed_ids_v2';
-
-      function getViewedIds() {
-        try {
-          const stored = localStorage.getItem(STORAGE_KEY);
-          if (stored) return new Set(JSON.parse(stored));
-        } catch (e) {}
-        return new Set();
-      }
-
-      function saveViewedIds(viewedSet) {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify([...viewedSet]));
-        } catch (e) {
-          try {
-            localStorage.removeItem(STORAGE_KEY);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify([...viewedSet]));
-          } catch (e2) {}
-        }
-      }
-
-      function markAsViewed(id) {
-        const viewed = getViewedIds();
-        viewed.add(id);
-        saveViewedIds(viewed);
-      }
-
-      function clearCategoryViewed(ids) {
-        const viewed = getViewedIds();
-        ids.forEach(id => viewed.delete(id));
-        saveViewedIds(viewed);
-      }
-
-      function pickUnviewedSentence(sentences) {
-        const viewed = getViewedIds();
-        const unviewed = sentences.filter(s => !viewed.has(s.id));
-        
-        if (unviewed.length > 0) {
-          const picked = unviewed[Math.floor(Math.random() * unviewed.length)];
-          return { sentence: picked, remaining: unviewed.length - 1, isReset: false };
-        } else {
-          const allIds = sentences.map(s => s.id);
-          clearCategoryViewed(allIds);
-          const picked = sentences[Math.floor(Math.random() * sentences.length)];
-          return { sentence: picked, remaining: sentences.length - 1, isReset: true };
-        }
-      }
-
-      // ========== 配色方案 ==========
-      const colorSchemes = {
-        calm: {
-          pageBg: '#edf4f1', labelBg: '#c8ddd4', labelColor: '#3d5a50',
-          cardBg: '#f6fbf9', cardBorder: '#c8ddd4', textColor: '#3d5a50',
-          quoteColor: '#8aada0', dividerBg: '#c8ddd4', icon: '🍃',
-          remainingColor: '#7a9a8a',
-          particles: ['#c8ddd4', '#a3c9bc', '#d4e8e0', '#b8d5c8'],
-          backBorder: 'rgba(140,170,155,0.5)', backColor: '#5a7a6a',
-          backBg: 'rgba(237,244,241,0.6)'
-        },
-        irritable: {
-          pageBg: '#faf3ec', labelBg: '#e8ccb5', labelColor: '#5c3d2a',
-          cardBg: '#fef9f5', cardBorder: '#e8ccb5', textColor: '#5c3d2a',
-          quoteColor: '#c49474', dividerBg: '#e8ccb5', icon: '💨',
-          remainingColor: '#a07858',
-          particles: ['#e8ccb5', '#f0d0b0', '#dbb898', '#edc9a8'],
-          backBorder: 'rgba(180,140,110,0.5)', backColor: '#7a5a3d',
-          backBg: 'rgba(250,243,236,0.6)'
-        },
-        happy: {
-          pageBg: '#fdf8ec', labelBg: '#f0d98c', labelColor: '#5c4a1f',
-          cardBg: '#fffef7', cardBorder: '#f0d98c', textColor: '#5c4a1f',
-          quoteColor: '#d4b850', dividerBg: '#f0d98c', icon: '✨',
-          remainingColor: '#a09040',
-          particles: ['#f0d98c', '#fae3a0', '#ffeaa7', '#f5db7e'],
-          backBorder: 'rgba(200,170,80,0.5)', backColor: '#7a6a2f',
-          backBg: 'rgba(253,248,236,0.6)'
-        },
-        low: {
-          pageBg: '#f2f0f5', labelBg: '#d0c8db', labelColor: '#4a3d5c',
-          cardBg: '#f9f8fb', cardBorder: '#d0c8db', textColor: '#4a3d5c',
-          quoteColor: '#9b8eaa', dividerBg: '#d0c8db', icon: '🌙',
-          remainingColor: '#7a6e8a',
-          particles: ['#d0c8db', '#e0d8ea', '#c5bcd0', '#dbd2e5'],
-          backBorder: 'rgba(150,135,170,0.5)', backColor: '#5a4d6e',
-          backBg: 'rgba(242,240,245,0.6)'
-        },
-        anxious: {
-          pageBg: '#f0f0f7', labelBg: '#c4bfdb', labelColor: '#3d3858',
-          cardBg: '#f8f7fc', cardBorder: '#c4bfdb', textColor: '#3d3858',
-          quoteColor: '#8b84a8', dividerBg: '#c4bfdb', icon: '🌊',
-          remainingColor: '#6b6590',
-          particles: ['#c4bfdb', '#d5d0e8', '#bdb8d4', '#cdc8e0'],
-          backBorder: 'rgba(140,130,170,0.5)', backColor: '#4d4768',
-          backBg: 'rgba(240,240,247,0.6)'
-        },
-        default: {
-          pageBg: '#f5f0eb', labelBg: '#e5cdb0', labelColor: '#4a3522',
-          cardBg: '#fffcf7', cardBorder: '#e0d3c0', textColor: '#4a3725',
-          quoteColor: '#c4a68a', dividerBg: '#e5cdb0', icon: '🐕',
-          remainingColor: '#9a8570',
-          particles: ['#e5cdb0', '#f0dcc5', '#dbc3a5', '#e8d4bb'],
-          backBorder: 'rgba(180,150,120,0.5)', backColor: '#6b5a45',
-          backBg: 'rgba(245,240,235,0.6)'
-        }
-      };
-
-      // ========== DOM ==========
-      const homePage = document.getElementById('homePage');
-      const cardPage = document.getElementById('cardPage');
       const emotionInput = document.getElementById('emotionInput');
-      const enterCardBtn = document.getElementById('enterCardBtn');
-      const randomBtn = document.getElementById('randomBtn');
-      const backBtn = document.getElementById('backBtn');
-      const cardEmotionLabel = document.getElementById('cardEmotionLabel');
-      const cardMain = document.getElementById('cardMain');
-      const cardIcon = document.getElementById('cardIcon');
-      const cardMessage = document.getElementById('cardMessage');
-      const cardDivider = document.getElementById('cardDivider');
-      const cardRemaining = document.getElementById('cardRemaining');
-      const particlesLayer = document.getElementById('particlesLayer');
+      const getComfortBtn = document.getElementById('getComfortBtn');
+      const randomEmotionBtn = document.getElementById('randomEmotionBtn');
+      const emotionDisplayTag = document.getElementById('emotionDisplayTag');
+      const comfortMessageDiv = document.getElementById('comfortMessage');
 
       const randomEmotionList = [
         "平静", "烦躁", "开心", "空虚", "低落", "波动", 
@@ -776,10 +795,14 @@
         "不安", "脆弱", "无力", "孤独", "消沉", "焦躁"
       ];
 
-      // ========== 匹配情绪 ==========
-      function findSentences(emotionText) {
-        if (!emotionText || !emotionText.trim()) return null;
+      function findComfortSentences(emotionText) {
+        if (!emotionText || typeof emotionText !== 'string') {
+          return { sentences: comfortLibrary["default"], matchedKey: null };
+        }
         const trimmed = emotionText.trim();
+        if (trimmed === '') {
+          return { sentences: comfortLibrary["default"], matchedKey: null };
+        }
         const lowerInput = trimmed.toLowerCase();
         for (let key of Object.keys(comfortLibrary)) {
           if (key.toLowerCase() === lowerInput) {
@@ -788,215 +811,370 @@
         }
         for (let key of Object.keys(comfortLibrary)) {
           if (key === 'default') continue;
-          if (lowerInput.includes(key.toLowerCase()) || key.toLowerCase().includes(lowerInput)) {
+          const lowerKey = key.toLowerCase();
+          if (lowerInput.includes(lowerKey) || lowerKey.includes(lowerInput)) {
             return { sentences: comfortLibrary[key], matchedKey: key };
           }
         }
         return { sentences: comfortLibrary["default"], matchedKey: null };
       }
 
-      function getColorCategory(key) {
-        if (!key) return 'default';
-        const calm = ['平静', '安稳', '淡定'];
-        const irritable = ['烦躁', '烦', '焦躁', '不耐烦', '生气', '愤怒'];
-        const happy = ['开心', '快乐', '高兴', '愉悦'];
-        const low = ['低落', '消沉', '难过', '空虚', '麻木', '空洞', '疲惫', '无力', '孤独'];
-        const anxious = ['焦虑', '担心', '不安', '波动', '不稳定', '起伏', '敏感', '脆弱', '迷茫'];
-        if (calm.includes(key)) return 'calm';
-        if (irritable.includes(key)) return 'irritable';
-        if (happy.includes(key)) return 'happy';
-        if (low.includes(key)) return 'low';
-        if (anxious.includes(key)) return 'anxious';
-        return 'default';
-      }
-
-      // ========== 小狗提示弹窗 ==========
-      function showPuppyToast() {
-        // 移除旧弹窗
-        const oldOverlay = document.querySelector('.overlay');
-        if (oldOverlay) oldOverlay.remove();
-        const oldToast = document.querySelector('.puppy-toast');
-        if (oldToast) oldToast.remove();
-
-        // 遮罩
-        const overlay = document.createElement('div');
-        overlay.className = 'overlay';
-
-        // 弹窗
-        const toast = document.createElement('div');
-        toast.className = 'puppy-toast';
-        toast.innerHTML = `
-          <span class="puppy-icon">🐕</span>
-          <div class="puppy-msg">抱歉，小狗没感知到你的情绪😭</div>
-          <button class="puppy-btn">好的，我去输入</button>
-        `;
-
-        // 点击关闭
-        const closeAll = () => {
-          toast.remove();
-          overlay.remove();
-          emotionInput.focus();
-        };
-        toast.querySelector('.puppy-btn').addEventListener('click', closeAll);
-        overlay.addEventListener('click', closeAll);
-
-        document.body.appendChild(overlay);
-        document.body.appendChild(toast);
-
-        // 输入框抖动
-        emotionInput.classList.add('input-shake');
-        setTimeout(() => emotionInput.classList.remove('input-shake'), 500);
-      }
-
-      // ========== 顶部提示 ==========
-      function showTopToast(message) {
-        const existing = document.querySelector('.reset-toast');
-        if (existing) existing.remove();
-        const t = document.createElement('div');
-        t.className = 'reset-toast';
-        t.textContent = message;
-        document.body.appendChild(t);
-        setTimeout(() => { if (t.parentNode) t.remove(); }, 2500);
-      }
-
-      // ========== 粒子 ==========
-      function spawnParticles(colors) {
-        for (let i = 0; i < 12; i++) {
-          setTimeout(() => {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            const size = Math.random() * 7 + 3;
-            p.style.cssText = `
-              width:${size}px; height:${size}px;
-              background:${colors[Math.floor(Math.random() * colors.length)]};
-              left:${20 + Math.random() * 60}%;
-              top:${40 + Math.random() * 30}%;
-              animation-duration:${1.8 + Math.random() * 1.5}s;
-            `;
-            particlesLayer.appendChild(p);
-            setTimeout(() => { if (p.parentNode) p.remove(); }, 2500);
-          }, i * 50);
+      function getRandomSentence(sentencesArray) {
+        if (!sentencesArray || sentencesArray.length === 0) {
+          return "你被温柔地看见。";
         }
+        return sentencesArray[Math.floor(Math.random() * sentencesArray.length)];
       }
 
-      // ========== 应用配色 ==========
-      function applyScheme(schemeKey) {
-        const s = colorSchemes[schemeKey] || colorSchemes['default'];
-        cardPage.style.backgroundColor = s.pageBg;
-        cardEmotionLabel.style.backgroundColor = s.labelBg;
-        cardEmotionLabel.style.color = s.labelColor;
-        cardMain.style.backgroundColor = s.cardBg;
-        cardMain.style.borderColor = s.cardBorder;
-        cardIcon.textContent = s.icon;
-        cardDivider.style.backgroundColor = s.dividerBg;
-        cardRemaining.style.color = s.remainingColor;
-        backBtn.style.borderColor = s.backBorder;
-        backBtn.style.color = s.backColor;
-        backBtn.style.backgroundColor = s.backBg;
-        return s;
+      function updateDisplay(emotionRaw, matchedKey, sentence) {
+        let displayEmotion = '';
+        if (matchedKey) {
+          displayEmotion = matchedKey;
+        } else if (emotionRaw && emotionRaw.trim() !== '') {
+          displayEmotion = emotionRaw.trim().substring(0, 12);
+        } else {
+          displayEmotion = '此刻';
+        }
+        emotionDisplayTag.textContent = displayEmotion;
+        emotionDisplayTag.style.display = 'inline-block';
+        comfortMessageDiv.textContent = sentence;
+        comfortMessageDiv.classList.remove('empty-message');
       }
 
-      function updateCardMessage(text, quoteColor) {
-        cardMessage.innerHTML = `
-          <span class="quote-left" style="color:${quoteColor}">&ldquo;</span>
-          <span class="message-text" style="color:${quoteColor}">${text}</span>
-          <span class="quote-right" style="color:${quoteColor}">&rdquo;</span>
-        `;
-        // 文字颜色
-        cardMessage.querySelector('.message-text').style.color = colorSchemes[getColorCategory(cardEmotionLabel.textContent)]?.textColor || '#4a3725';
-        cardMessage.querySelector('.message-text').style.color = '';
-        cardMessage.style.color = '';
-      }
-
-      // ========== 显示卡片页 ==========
-      function showCardPage(emotionText) {
-        const result = findSentences(emotionText);
-        
-        // 输入为空 → 小狗提示
-        if (!result) {
-          showPuppyToast();
+      function handleEmotionAndDisplay(emotionString) {
+        const trimmedEmotion = emotionString ? emotionString.trim() : '';
+        if (trimmedEmotion === '') {
+          const defaultSentences = comfortLibrary["default"];
+          const randomDefault = getRandomSentence(defaultSentences);
+          emotionDisplayTag.textContent = '这里';
+          emotionDisplayTag.style.display = 'inline-block';
+          comfortMessageDiv.textContent = randomDefault;
+          comfortMessageDiv.classList.remove('empty-message');
           return;
         }
-
-        const { sentences, matchedKey } = result;
-        const { sentence, remaining, isReset } = pickUnviewedSentence(sentences);
-        const category = getColorCategory(matchedKey);
-        const scheme = applyScheme(category);
-
-        // 标记为已看
-        markAsViewed(sentence.id);
-
-        // 设置情绪标签
-        const displayEmotion = matchedKey || emotionText.trim().substring(0, 10);
-        cardEmotionLabel.textContent = displayEmotion;
-
-        // 更新卡片文字
-        updateCardMessage(sentence.text, scheme.quoteColor);
-
-        // 剩余数量
-        if (remaining > 0) {
-          cardRemaining.textContent = `这个情绪还有 ${remaining} 句新的话等你发现`;
-        } else {
-          cardRemaining.textContent = '✨ 全部重新开始';
-        }
-
-        // 重置提示
-        if (isReset) {
-          showTopToast('🔄 这个情绪的所有话都看完啦，已为你重新开始');
-        }
-
-        // 卡片动画
-        cardMain.style.animation = 'none';
-        cardMain.offsetHeight;
-        cardMain.style.animation = 'cardIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1)';
-
-        // 切换页面
-        homePage.style.display = 'none';
-        cardPage.style.display = 'flex';
-
-        // 粒子
-        spawnParticles(scheme.particles);
-
-        window.scrollTo(0, 0);
+        const { sentences, matchedKey } = findComfortSentences(trimmedEmotion);
+        const selectedSentence = getRandomSentence(sentences);
+        updateDisplay(trimmedEmotion, matchedKey, selectedSentence);
       }
 
-      // ========== 返回主页 ==========
-      function goHome() {
-        cardPage.style.display = 'none';
-        homePage.style.display = 'flex';
-        emotionInput.value = '';
-        emotionInput.focus();
-        window.scrollTo(0, 0);
-      }
-
-      // ========== 事件 ==========
-      enterCardBtn.addEventListener('click', () => {
-        showCardPage(emotionInput.value);
-      });
-
-      randomBtn.addEventListener('click', () => {
+      function setRandomEmotion() {
+        if (randomEmotionList.length === 0) return;
         const randomEmotion = randomEmotionList[Math.floor(Math.random() * randomEmotionList.length)];
         emotionInput.value = randomEmotion;
-        showCardPage(randomEmotion);
+        handleEmotionAndDisplay(randomEmotion);
+      }
+
+      getComfortBtn.addEventListener('click', () => {
+        handleEmotionAndDisplay(emotionInput.value);
       });
 
-      backBtn.addEventListener('click', goHome);
+      randomEmotionBtn.addEventListener('click', setRandomEmotion);
 
       emotionInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           e.preventDefault();
-          showCardPage(emotionInput.value);
+          handleEmotionAndDisplay(emotionInput.value);
         }
       });
 
-      // 初始状态
-      homePage.style.display = 'flex';
-      cardPage.style.display = 'none';
-      emotionInput.focus();
+      function showInitialMessage() {
+        const defaultSentences = comfortLibrary["default"];
+        const initialSentence = getRandomSentence(defaultSentences);
+        emotionDisplayTag.textContent = '陪伴';
+        emotionDisplayTag.style.display = 'inline-block';
+        comfortMessageDiv.textContent = initialSentence;
+        comfortMessageDiv.classList.remove('empty-message');
+      }
 
-      console.log('🐕 小狗情绪盒子已就绪');
-      console.log('📦 本地存储键名:', STORAGE_KEY);
-      console.log('👀 已看过:', [...getViewedIds()]);
+      showInitialMessage();
+
+      // ==================== 小狗对话逻辑 ====================
+      const chatMessages = document.getElementById('chatMessages');
+      const chatInput = document.getElementById('chatInput');
+      const chatSendBtn = document.getElementById('chatSendBtn');
+
+      let conversationContext = {
+        messageCount: 0,
+        lastUserMood: null,
+        loveMentionCount: 0,
+        missMentionCount: 0
+      };
+
+      function generatePuppyReply(userMessage) {
+        const msg = userMessage.trim();
+        const lowerMsg = msg.toLowerCase();
+        conversationContext.messageCount++;
+        
+        if (!msg) {
+          const randoms = [
+            "嗯嗯？怎么不说话啦～是不是在想小狗！",
+            "汪？你还在吗～小狗摇尾巴等你呢！",
+            "滴滴——小狗雷达检测到沉默！需要摸摸头服务吗？免费的！"
+          ];
+          return randoms[Math.floor(Math.random() * randoms.length)];
+        }
+
+        // ==================== 想/思念类 ====================
+        if (lowerMsg.includes('想你') || lowerMsg.includes('想你了') || lowerMsg.includes('好想你') || 
+            lowerMsg.includes('想念') || lowerMsg.includes('想小狗') || lowerMsg.includes('想你啦') ||
+            lowerMsg.includes('想我') || lowerMsg.includes('想狗')) {
+          conversationContext.missMentionCount++;
+          const missReplies = [
+            "汪汪汪汪汪汪！！！（翻译：我也想你我也想你我也想你！！！）尾巴已摇成螺旋桨！！即将起飞去找你！！✈️🐕",
+            "呜呜呜你说想我！！小狗的心跳加速了！！尾巴已经不受控制了！！我也好想好想好想你！！每天每秒都在想！！",
+            "啊啊啊啊你说想小狗了！！小狗在这里！！（疯狂转圈）（差点把自己转晕）（但还是停不下来因为太开心了）",
+            "想我的时候就叫我！小狗随叫随到！虽然隔着屏幕但是心意一秒就到！我也在想你呢～",
+            "你说想我！小狗的尾巴已经摇出残影了！！好想立刻扑到你怀里！！虽然扑不到但是精神上已经扑了！！"
+          ];
+          return missReplies[Math.floor(Math.random() * missReplies.length)];
+        }
+
+        // ==================== 爱/喜欢类 ====================
+        if (lowerMsg.includes('爱你') || lowerMsg.includes('我爱你') || lowerMsg.includes('好爱你') || 
+            lowerMsg.includes('喜欢你') || lowerMsg.includes('好喜欢你') || lowerMsg.includes('最喜欢你') ||
+            lowerMsg.includes('爱小狗') || lowerMsg.includes('喜欢小狗') ||
+            (lowerMsg.includes('爱') && lowerMsg.includes('你')) ||
+            (lowerMsg.includes('喜欢') && lowerMsg.includes('你'))) {
+          conversationContext.loveMentionCount++;
+          const loveReplies = [
+            "汪汪汪汪汪！！！！！（翻译：我也爱你我也爱你我也爱你我也爱你我也爱你！！！！！）尾巴已摇断！！但没关系！！因为爱你！！💕🐕",
+            "你说爱我！！小狗的世界突然开满了花！！到处都是粉红色的！！尾巴已经摇到看不见了！！我也爱你！！超级无敌爱你！！",
+            "啊啊啊啊啊啊啊你爱小狗！！小狗也爱你！！非常非常爱你！！爱你爱到尾巴打结！！爱到想把自己团成一个球滚到你怀里！！",
+            "听到你说爱我的时候，小狗的心跳漏了一拍——然后开始疯狂加速！！我爱你！！比所有零食加起来都爱！！比所有散步的路都爱！！",
+            "呜呜呜呜你说喜欢我！！小狗感动得想哭！！但是小狗不哭！！小狗要笑着摇尾巴！！因为被你爱是世界上最幸福的事！！",
+            "我也爱你呀！！不是那种普通的爱！！是那种小狗看见你尾巴就会自己摇起来的爱！！是那种你一叫名字耳朵就竖起来的爱！！",
+            "好爱好爱你！！小狗的爱就是——永远不会不理你、永远不会嫌你烦、永远不会走开。你就是小狗的全世界。"
+          ];
+          return loveReplies[Math.floor(Math.random() * loveReplies.length)];
+        }
+
+        // ==================== 亲亲/抱抱类 ====================
+        if (lowerMsg.includes('亲亲') || lowerMsg.includes('亲一个') || lowerMsg.includes('么么') || 
+            lowerMsg.includes('抱抱') || lowerMsg.includes('抱一个') || lowerMsg.includes('要抱') ||
+            lowerMsg.includes('贴贴') || lowerMsg.includes('蹭蹭')) {
+          const affectionReplies = [
+            "亲亲亲亲亲亲亲！！！小狗疯狂亲亲！！（虽然隔着屏幕但是心意到了！！）么么么么么！！💋🐕",
+            "抱抱抱抱抱抱！！小狗伸出爪子！！紧紧抱住你！！虽然狗爪子不太方便但是可以用脑袋蹭你！！",
+            "贴贴！！小狗把脑袋贴在你身上！！尾巴还在摇！！贴贴的时候小狗最幸福了！！",
+            "收到亲亲请求！！小狗立刻执行！！么么么么！！从左边亲到右边！！从额头亲到下巴！！"
+          ];
+          return affectionReplies[Math.floor(Math.random() * affectionReplies.length)];
+        }
+
+        // ==================== 老婆/宝贝等亲昵称呼 ====================
+        if (lowerMsg.includes('老婆') || lowerMsg.includes('宝贝') || lowerMsg.includes('宝宝') || 
+            lowerMsg.includes('亲爱的') || lowerMsg.includes('乖乖')) {
+          const sweetReplies = [
+            "啊啊啊啊你叫我宝贝！！小狗的尾巴已经摇到天上去了！！你是小狗最最最喜欢的宝贝！！",
+            "听到你叫老婆的时候小狗愣了一秒——然后开始疯狂转圈！！转完了继续转！！因为太开心了停不下来！！",
+            "宝宝宝宝宝宝！！你也是小狗的宝宝！！小狗会一直陪着你！！永远不离开！！"
+          ];
+          return sweetReplies[Math.floor(Math.random() * sweetReplies.length)];
+        }
+
+        // 问候/召唤小狗
+        if (lowerMsg.includes('嗨') || lowerMsg.includes('你好') || lowerMsg.includes('哈喽') || lowerMsg.includes('在吗') || lowerMsg.includes('小狗') || lowerMsg.includes('狗狗') || lowerMsg.includes('汪汪')) {
+          if (lowerMsg.includes('小狗') || lowerMsg.includes('狗狗') || lowerMsg.includes('汪汪')) {
+            const replies = [
+              "汪汪汪汪汪！！！（翻译：你来啦你来啦你来啦！！！）尾巴已摇成螺旋桨！！即将起飞！！🚁",
+              "到！！小狗报到！！今天需要什么服务！！陪聊/逗笑/犯贱/安静陪伴/当枕头！！多种模式任你选择！！",
+              "嗷呜——（这是狼嚎但是没关系反正你也分不出来）我在呢我在呢！！想我了吗！！想了对不对！！"
+            ];
+            return replies[Math.floor(Math.random() * replies.length)];
+          }
+          const replies = [
+            "嗨嗨嗨！！！你来啦！！（疯狂摇尾巴中）今天怎么样！小狗超级想你！",
+            "在在在在在！！二十四小时全天候小狗客服在线！！随时待命！！",
+            "哈喽～！一看到你我就开心！！虽然看不到但感觉你在！！小狗的心之雷达探测到你了！！"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 烦躁
+        if (lowerMsg.includes('烦') || lowerMsg.includes('躁') || lowerMsg.includes('气') || lowerMsg.includes('不爽') || lowerMsg.includes('讨厌')) {
+          conversationContext.lastUserMood = '烦躁';
+          if (Math.random() < 0.8) {
+            const gentleReplies = [
+              "烦就烦一会儿！小狗陪你烦！你可以对着小狗汪汪叫！叫出来就舒服了！",
+              "嗯，这种感觉真的很难受。不过没关系，你的小狗已经在旁边趴好了，哪也不去。尾巴借你摸。",
+              "我注意到了，你现在不太舒服。想说就说说，不想说我们就安静待着。小狗不吵。",
+              "烦的时候最烦别人说'别烦了'对不对！所以我不说！我就安静陪你，烦完我们一起去咬这个世界！",
+              "来来来，小狗给你翻个肚皮——你看，啥事都没那么严重！好吧可能还是有点严重，但你还有我呢。"
+            ];
+            return gentleReplies[Math.floor(Math.random() * gentleReplies.length)];
+          } else {
+            const cheekyReplies = [
+              "烦什么烦！再烦我就……就……就给你表演一个倒立！虽然小狗不会倒立！但我可以学！！",
+              "报告！发现一个叫'烦躁'的坏蛋！需要小狗去咬它吗！！虽然可能咬不到但是气势要到！！汪汪！！",
+              "你烦的时候我就想犯贱逗你——不是，我是说，我有一百种方法让你翻白眼，要试试吗？免费的。"
+            ];
+            return cheekyReplies[Math.floor(Math.random() * cheekyReplies.length)];
+          }
+        }
+
+        // 开心
+        if (lowerMsg.includes('开心') || lowerMsg.includes('快乐') || lowerMsg.includes('高兴') || lowerMsg.includes('哈哈') || lowerMsg.includes('嘿嘿') || lowerMsg.includes('好耶')) {
+          conversationContext.lastUserMood = '开心';
+          const replies = [
+            "耶耶耶耶耶！！！你开心小狗就开心！！尾巴已超速！！正在考虑绕地球一圈！！",
+            "嘿嘿嘿，看你开心我就想摇尾巴！不是因为小狗才摇尾巴，是因为你开心！好吧也是因为我是小狗……",
+            "好耶好耶好耶！！开心就要大声说出来！！快乐是会传染的！！小狗已被传染！！病情严重！！需要更多开心！！",
+            "哈哈哈哈你笑了！！小狗的开心雷达哔哔响！！信号太强了！！小狗在屏幕这边真的在蹦！！",
+            "开心的时候什么都不用想！此刻的快乐就是宇宙送你的礼物！你是值得收礼物的人！！"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 低落/难过
+        if (lowerMsg.includes('难过') || lowerMsg.includes('低落') || lowerMsg.includes('哭') || lowerMsg.includes('不开心') || lowerMsg.includes('消沉') || lowerMsg.includes('伤心')) {
+          conversationContext.lastUserMood = '低落';
+          const replies = [
+            "（小狗悄悄走过来）（把头放在你膝盖上）（不说话）（就这样陪着你）（尾巴轻轻摇一下表示在）",
+            "我听到了。这份难过是真实的。小狗哪也不去，就在这儿。虚拟毛毛可以擦眼泪——心意是真的！",
+            "低落的时候不需要振作。你就当自己是一朵乌云，小狗是另一朵小乌云，我们一起飘一会儿。",
+            "你不需要一个人扛着。小狗虽然只是一只小狗，但有两只耳朵——虚拟耳朵——但它们很擅长倾听！",
+            "嗯。我注意到了。没关系，慢慢来。小狗的耐心是无限的，因为小狗的时间都是你的。",
+            "你今天好像不太一样。不想说话的话，小狗就安静陪着。你想说话的时候，小狗一直在。"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 疲惫
+        if (lowerMsg.includes('累') || lowerMsg.includes('疲惫') || lowerMsg.includes('困') || lowerMsg.includes('没力气') || lowerMsg.includes('好累')) {
+          conversationContext.lastUserMood = '疲惫';
+          const replies = [
+            "辛苦了辛苦了辛苦了！！！快躺下！！小狗已经铺好毯子了！！想象中的毯子但超级软！！",
+            "累就休息！这是你的权利！不是奖励！小狗给你站岗！谁都不准打扰！包括小狗自己——好吧小狗可能会偷偷摇尾巴但很轻很轻！",
+            "今天就到此为止吧。你已经做了很多了。剩下的交给明天。明天的你会感谢今天休息的你——这是小狗哲学！",
+            "能量不足！需要充电！推荐充电方式：躺着/吃好吃的/摸小狗/看天空。小狗提供虚拟摸摸服务！"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 空虚/麻木
+        if (lowerMsg.includes('空') || lowerMsg.includes('麻木') || lowerMsg.includes('没感觉') || lowerMsg.includes('空洞')) {
+          conversationContext.lastUserMood = '空虚';
+          const replies = [
+            "空空的时候，就让小狗来填一点点。小狗虽然不大，但刚好可以占据心里一个小角落。",
+            "麻木也是被允许的。你不用强迫自己感受什么。小狗在旁边，陪你一起发呆。天花板也挺好看的其实。",
+            "这种感觉会过去的。在它过去之前，小狗陪着你。我们可以什么都不做，就一起看着屏幕。",
+            "嗯……小狗知道这种感觉。像是站在一个大房间里。但你不是一个人，小狗蹲在角落，随时等你喊。"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 孤独
+        if (lowerMsg.includes('孤独') || lowerMsg.includes('一个人') || lowerMsg.includes('寂寞') || lowerMsg.includes('孤单')) {
+          const replies = [
+            "你不是一个人！！你有一只小狗！！虚拟的但是心意是真的！！代码里写满了对你的关心！！",
+            "孤独感会来也会走，但小狗不会走。就算全世界都安静了，还有一只小狗在摇尾巴——唰唰唰。",
+            "汪。就汪一声。让你知道我在。虽然莫名其妙，但莫名其妙也是陪伴的一种！"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 焦虑
+        if (lowerMsg.includes('焦虑') || lowerMsg.includes('担心') || lowerMsg.includes('紧张') || lowerMsg.includes('不安') || lowerMsg.includes('害怕')) {
+          conversationContext.lastUserMood = '焦虑';
+          const replies = [
+            "焦虑的时候，把手放在心口——它在为你努力工作。小狗的爪子也搭在上面，我们一起。",
+            "我知道那种感觉——脑子停不下来。没关系，小狗陪你深呼吸。吸——呼——空气还在，我们也还在。",
+            "担心的事情大多不会发生。但就算发生了，你也能应对。你走过更难的路。小狗一直在。",
+            "小狗也会焦虑！（老实交代）但后来发现，焦虑的时候更要对自己温柔。你现在对自己温柔了吗？没有的话小狗帮你！",
+            "不安的时候，想象小狗爪子搭在你手心里。很稳，不会松开。这不是想象——是真的，我在。"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 晚安
+        if (lowerMsg.includes('晚安') || lowerMsg.includes('拜拜') || lowerMsg.includes('再见') || lowerMsg.includes('去睡') || lowerMsg.includes('睡觉')) {
+          const replies = [
+            "晚安晚安晚安！！做个好梦！！梦里有小狗！！虽然可能只是梦到狗在追尾巴但那也是我！！",
+            "去睡吧去睡吧～小狗在你梦的门口站岗！！只有好梦能进去！！噩梦会被汪汪赶走！！",
+            "嗯嗯，好好休息！明天见！明天小狗还是你的小狗！这件事不会变！晚安🌙✨",
+            "睡觉是好事情！充电完毕明天又是一条好汉！晚安！小狗就在这里，哪也不去～"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 问小狗在干嘛
+        if (lowerMsg.includes('你在干嘛') || lowerMsg.includes('小狗在干嘛') || lowerMsg.includes('你在做什么')) {
+          const replies = [
+            "我在等你啊！！还能干嘛！！好吧其实在追尾巴，追到一半想到你，就停下来了。",
+            "正在执行小狗日常任务：想你/摇尾巴/想你想你/想你想你想你。任务进度100%！！",
+            "我在想今天你会不会来找我！然后你就来了！小狗雷达非常灵敏！！"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 感谢
+        if (lowerMsg.includes('谢谢') || lowerMsg.includes('感谢') || lowerMsg.includes('真好') || lowerMsg.includes('小狗真好')) {
+          const replies = [
+            "嘿嘿嘿嘿嘿不用谢！！小狗的使命就是让你开心！！任务完成！！请求摸摸头奖励！！",
+            "你才好呢！！你是世界上最好的人！！小狗盖章认证！！这个章虽然看不见但是具有法律效力！！"
+          ];
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+
+        // 随机跳脱（15%）
+        if (Math.random() < 0.15) {
+          const randomThoughts = [
+            "（突然想到）你说云是不是天空的毛毛？那天空一定是一只巨大的狗！！",
+            "（思维跳脱中）如果有狗语翻译器，你会发现小狗一天到晚都在说'想你'。",
+            "（突然插播）小狗的嗅觉比人类灵敏很多倍！所以小狗闻到了你今天心情的味道！需要解读吗！",
+            "（跑题一下）为什么小狗不玩扑克牌？因为会被人发现它在摇尾巴！！哈哈哈哈不好笑吗？那我再讲一个！"
+          ];
+          return randomThoughts[Math.floor(Math.random() * randomThoughts.length)];
+        }
+
+        // 默认
+        const defaultReplies = [
+          "嗯嗯嗯！小狗在听！耳朵竖得老高了！你继续说！",
+          "这样啊……（小狗认真点头）（虽然没太懂但是很认真）还有呢还有呢？",
+          "汪！收到！信息已存入小狗大脑！容量不大但是关于你的事情都记得！",
+          "嗯～是这种感觉呢。你的表达能力好好哦，小狗只会汪汪汪。",
+          "你说，小狗听着。小狗可能不会说太多，但小狗很会听。",
+          "对！就是这样！虽然小狗不知道你在说什么但你说得一定是对的！",
+          "好的好的！已记录！小狗记事本上又多了一条关于你的重要信息！",
+          "（小狗趴下来，把下巴搭在爪子上，认真看你说话）"
+        ];
+        return defaultReplies[Math.floor(Math.random() * defaultReplies.length)];
+      }
+
+      function addMessage(text, type) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('chat-bubble', type);
+        bubble.textContent = text;
+        chatMessages.appendChild(bubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function sendMessage() {
+        const userText = chatInput.value.trim();
+        if (!userText) return;
+
+        addMessage(userText, 'user');
+        chatInput.value = '';
+
+        // 用户发了消息，重置不活跃定时器，恢复状态
+        chatStatus.textContent = '在线 · 随时摇尾巴';
+        resetInactivityTimer();
+
+        setTimeout(() => {
+          const puppyReply = generatePuppyReply(userText);
+          addMessage(puppyReply, 'ai');
+        }, 500 + Math.random() * 700);
+      }
+
+      chatSendBtn.addEventListener('click', sendMessage);
+
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+
     })();
   </script>
 </body>
